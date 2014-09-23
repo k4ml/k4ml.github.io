@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>ImportError</title><link>http://importerror.com</link><description>We failed at some point in our life</description><atom:link href="http://importerror.com/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 14 Sep 2014 09:01:43 GMT</lastBuildDate><generator>Nikola &lt;http://getnikola.com/&gt;</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Bagaimana $_POST dan $_GET terhasil</title><link>http://importerror.com/posts/bagaimana-_post-dan-_get-terhasil.html</link><description>&lt;p&gt;No translation yet, please red the Malay version.&lt;/p&gt;</description><category>php</category><guid>http://importerror.com/posts/bagaimana-_post-dan-_get-terhasil.html</guid><pubDate>Mon, 31 Mar 2014 08:23:49 GMT</pubDate></item><item><title>Mini PyCon MY 2014</title><link>http://importerror.com/posts/mini-pycon-my-2014.html</link><description>&lt;div&gt;&lt;p&gt;This is the first mini PyCon held in Malaysia so congratulation to the &lt;a href="http://www.pycon.my/mini-pycon-my-2014/staff"&gt;team&lt;/a&gt; that
+finally make it happened. It just 1 day event filled with tracks on various topic
+related to python. Due to the space limitation, all sessions being held serially in
+a single room. Having attend a number of PyCon APAC last time in SG, I'm quite happy
+that I managed to follow all the sessions in this mini pycon. It quite frustrating when
+you have to decide between two interesting sessions because it run in parallel in two
+different places. Below are some quick notes from the sessions that I managed to recall.&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;
+&lt;p&gt;Sphinx and Read The Docs - Eric Holscher&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;Defacto documentation tools in Python Community.&lt;/li&gt;
+&lt;li&gt;While RTD and Sphinx are both valuable tools that we have in Python,
+  I can't really stand RST for writing. It kind of Latex where everytime I need
+  to write, I have to read the documentation again to look for all the syntax.&lt;/li&gt;
+&lt;li&gt;I have only used RTD once in the past, for writing my &lt;a href="http://asas-django.rtfd.org"&gt;unfinished book&lt;/a&gt;
+  on django.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Python on Google App Engine - Desmond Lua&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;Quite an interesting talk.&lt;/li&gt;
+&lt;li&gt;Everything you did probably would cost money so you have to give extra
+  attention on how you write your app.&lt;/li&gt;
+&lt;li&gt;I had a thought of moving &lt;a href="http://harga.smach.net"&gt;Cari Harga Barang&lt;/a&gt; to App Engine
+  in order to save some money on the hosting and also the time to manage it but look
+  like it will cost more with App Engine since there's lot of write operations to store
+  all the items and keep it updated daily.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Boosting Productivity with IPython - Boey Pak Cheong&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;Finally, I had a visual on what Ipython Notebook really is. In fact, in the
+  later talk, the presenter was using IPython Notebook to show and demonstrate
+  his python code snippet.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Python Powered Cloud - Joseph Ziegler&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;This imo the most interesting talk.&lt;/li&gt;
+&lt;li&gt;I have long heard about Elastic Beanstalk (EB) but never had a chance to give it a try.&lt;/li&gt;
+&lt;li&gt;EB probably what I have been looking on how to deploy our apps.&lt;/li&gt;
+&lt;li&gt;The only downside of EB is that it based on RHEL which mean for
+  organization that been using Ubuntu, it will be a huge leap to migrate.&lt;/li&gt;
+&lt;li&gt;Another cool stuff shown in this talk, the &lt;a href="https://github.com/newsapps/beeswithmachineguns"&gt;bees army&lt;/a&gt;.
+  It being used to DDOS the website in order to demo how EB auto scaling work. Still
+  wondering how this thing went out of my radar ;).&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Python in Embedded and Robotics Development - Yap Wen Jiun&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;I'm not into robotic (yet), maybe until my kid ready to play around
+  with computer and all the stuff.&lt;/li&gt;
+&lt;li&gt;There's a kind of OS for robotic stuff call &lt;a href="http://wiki.ros.org/"&gt;ROS&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Creating Powerful RESTful API Services with Django Tastypie - Leong Seh Hui&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;We used Django Rest Framework for one of our app in development.&lt;/li&gt;
+&lt;li&gt;The speaker however never used DRF so unable to get his insight on the
+  differences between both framework.&lt;/li&gt;
+&lt;li&gt;Looking at &lt;a href="https://github.com/toastdriven/django-tastypie#why-tastypie"&gt;Why Tastypie section&lt;/a&gt;
+  which say 'You DON'T want to have to write your own serializer to make the output right.',
+  ok, that sound true.&lt;/li&gt;
+&lt;li&gt;Tastypie way of hooking the Resource into urls.py also captured my attention since it
+  look similar to what I'm doing with my little library &lt;a href="https://bitbucket.org/k4ml/django-viewrouter"&gt;django-viewrouter&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</description><category>pycon</category><category>python</category><guid>http://importerror.com/posts/mini-pycon-my-2014.html</guid><pubDate>Sun, 16 Mar 2014 00:19:20 GMT</pubDate></item><item><title>PHP: Headers already sent and HTTP basic</title><link>http://importerror.com/posts/php-headers-already-sent-and-http-basic.html</link><description>&lt;div&gt;&lt;p&gt;If there's one error that must be encountered by all PHP developers, this:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="n"&gt;Warning&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Cannot&lt;/span&gt; &lt;span class="n"&gt;modify&lt;/span&gt; &lt;span class="n"&gt;header&lt;/span&gt; &lt;span class="n"&gt;information&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt; &lt;span class="n"&gt;already&lt;/span&gt; &lt;span class="n"&gt;sent&lt;/span&gt; &lt;span class="n"&gt;by&lt;/span&gt; &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;probably one of it. Anyone who developing in PHP must at least once having issue
+involving this. Lot of articles and answers have been written on this issue, and &lt;a href="http://stackoverflow.com/questions/8028957/how-to-fix-headers-already-sent-error-in-php"&gt;this
+answer on stackoverflow&lt;/a&gt; is one of the most comprehensive write up explaining the issue,
+why it happen and how to fix it. So I don't plan to talk much on the PHP part in this post
+but more on the HTTP part.&lt;/p&gt;
+&lt;h3 id="what-is-http"&gt;What is HTTP ?&lt;/h3&gt;
+&lt;p&gt;It's a protocol that govern how a piece of information can be exchanged over the Internet.
+There are lot of protocols defined and being used on the Internet but HTTP definitely one
+of the widely used protocol in form of what layman known as web, or World Wide Web (WWW).
+The protocol is being defined as &lt;a href="https://www.ietf.org/rfc/rfc2616.txt"&gt;RFC 2616&lt;/a&gt; and as we will later realized, it is a
+text protocol. Being a text based protocol make it much easier to study and understand and
+test it in practical manner since no special tools needed to actually implement the protocol.
+Before we delved deeper into the protocol, let also clear up what actually meant by the word
+protocol itself.&lt;/p&gt;
+&lt;p class="more"&gt;&lt;a href="http://importerror.com/posts/php-headers-already-sent-and-http-basic.html"&gt;Read more…&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><category>php</category><category>http</category><category>headers</category><guid>http://importerror.com/posts/php-headers-already-sent-and-http-basic.html</guid><pubDate>Mon, 03 Mar 2014 06:37:42 GMT</pubDate></item><item><title>When to comment ?</title><link>http://importerror.com/posts/when-to-comment.html</link><description>&lt;div&gt;&lt;p&gt;One of the question we faced up when writing code is when to put comment for our code. It''s already pretty well known that we should comment on the 'why' part, not the 'how'. While looking through our code for some code review, I found these few lines of code:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="c"&gt;# make requests to the API and process response&lt;/span&gt;
+&lt;span class="n"&gt;resp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dumps&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;resp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status_code&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Above I think is an example of unnecessary comment since it obvious from the code that we're making some request to a &lt;code&gt;url&lt;/code&gt; and processing it's response. Good comment is something along this line:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="c"&gt;# doing POST here since the API does not yet support PUT&lt;/span&gt;
+&lt;span class="n"&gt;resp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dumps&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;payload&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;auth&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;resp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;status_code&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="o"&gt;...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In above illustrative situation, the request logically should be a PUT request but due to some REASON it has to be a POST. The REASON that is worthy for comment since it explain the WHY part. It help the next developer coming up to maintain this code when he probably has in mental state that the request in this section of code should be a PUT not POST. The comment help him to not start raising suspicious that this section of code now has a bug.&lt;/p&gt;
+&lt;p&gt;So this just one example of when to comment our code. I'll try to add more as I encountered more examples.&lt;/p&gt;&lt;/div&gt;</description><category>coding</category><guid>http://importerror.com/posts/when-to-comment.html</guid><pubDate>Thu, 16 Jan 2014 18:07:32 GMT</pubDate></item><item><title>Python: Custom Interactive Console</title><link>http://importerror.com/posts/python-custom-interactive-console.html</link><description>&lt;div&gt;&lt;p&gt;While working on new features that consist of web frontend and a backend API, I found
+a constant need to manipulate the backend API through python interactive console.
+Ideally I should implement a command line interface that I can use while waiting for the web frontend to finish but since the API (a class) already has structured methods to access all the API functionalities, a cli interface will just duplicating most of the class API methods.&lt;/p&gt;
+&lt;p&gt;What tedios when accessing the API through python interactive console is having to re-import all the objects that you need every time you start the interactive console. So an idea pop up - why not create my own custom interactive console with all the objects that I need pre-imported. In python, creating your own interactive console is &lt;a href="http://stackoverflow.com/questions/19754458/open-interactive-python-console-from-a-script"&gt;trivial&lt;/a&gt;. The code module has all that you need.&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;code&lt;/span&gt;
+
+&lt;span class="c"&gt;# SomeClass will be available in the interactive console&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;yourmodule&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SomeClass&lt;/span&gt;
+
+&lt;span class="nb"&gt;vars&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;globals&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="nb"&gt;vars&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;locals&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;span class="n"&gt;shell&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;InteractiveConsole&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;shell&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;interact&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;While simple and just few lines of code, above is not really useful. It doesn't have auto complete and no history, you can't use up/down arrow key to repeat the previous command. A better version:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;code&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;readline&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;rlcompleter&lt;/span&gt;
+
+&lt;span class="c"&gt;# SomeClass will be available in the interactive console&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;yourmodule&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SomeClass&lt;/span&gt;
+
+&lt;span class="nb"&gt;vars&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;globals&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="nb"&gt;vars&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;locals&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;span class="n"&gt;readline&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_completer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rlcompleter&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Completer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;complete&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;readline&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse_and_bind&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tab: complete"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;shell&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;InteractiveConsole&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;shell&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;interact&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Above is much nicer. Now you have auto complete (type &lt;code&gt;Some&amp;lt;Tab&amp;gt;&lt;/code&gt; and you got &lt;code&gt;SomeClass&lt;/code&gt;). Cool. But I immediately noticed that the history was not preserved, mean that when I closed the console and start again, it's in blank slate. I can't repeat command in previous session. This actually how the default python console work but I'd already have &lt;code&gt;~/.pythonrc.py&lt;/code&gt; that I defined as &lt;code&gt;PYTHONSTARTUP&lt;/code&gt; to &lt;a href="http://sontek.net/blog/detail/tips-and-tricks-for-the-python-interpreter"&gt;setup the tab completion and command history&lt;/a&gt;. It seem that my pythonrc.py not being processed by this custom console.&lt;/p&gt;
+&lt;p&gt;Noticing that the python console from django &lt;code&gt;manage.py shell&lt;/code&gt; working correctly with my pythonrc.py, I'd take a look at the &lt;a href="https://github.com/django/django/blob/master/django/core/management/commands/shell.py#L67"&gt;implementation code&lt;/a&gt;. Look like django has to process PYTHONSTARTUP manually. I'm not really keen on copy-pasting the code from django but there's no way to pass your current enviroment into the console that django created.&lt;/p&gt;
+&lt;p&gt;In the end, I have to copy the django code into my console function:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;code&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;readline&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;rlcompleter&lt;/span&gt;
+
+&lt;span class="c"&gt;# SomeClass will be available in the interactive console&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;yourmodule&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;SomeClass&lt;/span&gt;
+
+&lt;span class="nb"&gt;vars&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;globals&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="nb"&gt;vars&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;locals&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;span class="n"&gt;readline&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_completer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rlcompleter&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Completer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;complete&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;readline&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse_and_bind&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"tab: complete"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# copied from django.core.management.commands.shell&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;pythonrc&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"PYTHONSTARTUP"&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                 &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;expanduser&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'~/.pythonrc.py'&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;pythonrc&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isfile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pythonrc&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pythonrc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;handle&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="k"&gt;exec&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;handle&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;pythonrc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'exec'&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+        &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;NameError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;pass&lt;/span&gt;
+
+&lt;span class="n"&gt;code&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;interact&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;local&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;vars&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I found that working directly in the console like this motivate me to write better docstring for each functions and methods as I'd constantly using the help() function to figure out what each function/class/methods are doing. This seem to be much better than having to write dedicated cli interface for your API.&lt;/p&gt;&lt;/div&gt;</description><category>python</category><guid>http://importerror.com/posts/python-custom-interactive-console.html</guid><pubDate>Mon, 13 Jan 2014 13:34:23 GMT</pubDate></item><item><title>HackerNews/Reddit/Stackoverflow like communities</title><link>http://importerror.com/posts/hackernewsredditstackoverflow-like-communities.html</link><description>&lt;div&gt;&lt;p&gt;Being a developer/programmer, site such as Reddit (especially &lt;a href="http://www.reddit.com/r/programming"&gt;r/programming&lt;/a&gt;) and
+&lt;a href="https://news.ycombinator.com/"&gt;HackerNews&lt;/a&gt; are my main source of latest news and updates. Next definitely Stackoverflow when looking for answers on specific programming problems. But from time to time, I'd
+also discovered few other small communities, mostly country focused while going through the google search results. So I've decided to start collecting link to these communities in this blog posts.&lt;/p&gt;
+&lt;p&gt;So here are the lists so far:-&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href="http://nullpointer.ph/"&gt;nullpointer&lt;/a&gt; - Q&amp;amp;A like site in Phillipine.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://hackerstreet.in/"&gt;Hackstreet.India&lt;/a&gt; - India based site.&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;While not an Q&amp;amp;A site, I listed also here site with domain of similar theme:-&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href="http://hackflow.com/"&gt;Hackflow&lt;/a&gt; - Blog mostly on Python.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://importerror.com/"&gt;ImportError&lt;/a&gt; - This very own site ;)&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;</description><category>python</category><category>bookmark</category><guid>http://importerror.com/posts/hackernewsredditstackoverflow-like-communities.html</guid><pubDate>Tue, 07 Jan 2014 10:28:56 GMT</pubDate></item><item><title>Javascript Self Invoking Function</title><link>http://importerror.com/posts/javascript-self-invoking-function.html</link><description>&lt;div&gt;&lt;p&gt;While peeking into Twitter &lt;a href="https://github.com/twbs/bootstrap/blob/8a74264344489e8b9e10c5c5e2098bb75116b8bd/js/alert.js#L21"&gt;Bootstrap js&lt;/a&gt; code, I noticed function being defined like this:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;"use strict"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// ALERT CLASS DEFINITION&lt;/span&gt;
+    &lt;span class="c1"&gt;// ======================&lt;/span&gt;
+
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;dismiss&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'[data-dismiss="alert"]'&lt;/span&gt;
+    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;Alert&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="err"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'click'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;dismiss&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;close&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;...&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Noticed the &lt;code&gt;+&lt;/code&gt; sign before the keyword &lt;code&gt;function&lt;/code&gt;. At first I thought it could some typo slipping through the commit but after some google, it turn out that &lt;a href="http://stackoverflow.com/questions/13341698/javascript-plus-sign-in-front-of-function-name"&gt;just another way&lt;/a&gt; to define self invoking function in JavaScript. Those who has been writing some JavaScript, or deal with some JS library probably already familiar with a common idiom to write code like below:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'#some_dom_id'&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;click&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="p"&gt;....);&lt;/span&gt;
+&lt;span class="p"&gt;})(&lt;/span&gt;&lt;span class="nx"&gt;jQuery&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p class="more"&gt;&lt;a href="http://importerror.com/posts/javascript-self-invoking-function.html"&gt;Read more…&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><category>javascript</category><guid>http://importerror.com/posts/javascript-self-invoking-function.html</guid><pubDate>Tue, 03 Dec 2013 17:54:03 GMT</pubDate></item><item><title>Angularjs: Event handler attached to all anchor tag 'a'</title><link>http://importerror.com/posts/angularjs-event-handler-attached-to-all-anchor-tag-a.html</link><description>&lt;p&gt;Noticed today that angular &lt;a href="http://docs.angularjs.org/api/ng.directive:a"&gt;modify the behavior&lt;/a&gt; of 'a' tag to include some event handler by default. Discover this after getting error &lt;code&gt;Object #&amp;lt;g&amp;gt; has no method 'on'&lt;/code&gt; error in my dev console. The error actually showing up after I added jquery to the page but the fact that angular attaching event to all 'a' tag really suprising. I have some 'normal' links I don't want any fancy behavior, just a link. Found a &lt;a href="http://badwing.com/angularjs-heavy-handed-anchor-tag-disable-directive/"&gt;post on how to create new directive to disable the behavior&lt;/a&gt; but for now I manage to escape from this by simply not using angular together with jquery.&lt;/p&gt;</description><category>javascript</category><category>angularjs</category><guid>http://importerror.com/posts/angularjs-event-handler-attached-to-all-anchor-tag-a.html</guid><pubDate>Sun, 17 Nov 2013 17:19:58 GMT</pubDate></item><item><title>Django: @transaction.commit_manually and accessing db from template</title><link>http://importerror.com/posts/django-transactioncommit_manually-and-accessing-db-from-template.html</link><description>&lt;div&gt;&lt;p&gt;Bumped into this issue twice and because the first time it happened was almost a year ago, in different project, I'd already lost my mental note about it when it happened again for second time. Our views functions are wrapped inside &lt;code&gt;@transaction.commit_manually&lt;/code&gt;, which look like below:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@transaction.commit_manually&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;send_message&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;context&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="c"&gt;# do some stuff&lt;/span&gt;
+    &lt;span class="n"&gt;transaction&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;commit&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;render&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'path/to/template.html'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This work flawlessly until recently, I need to add some logic in the template that need to check certain user's permission, before displaying the part. In the template, it just some function call that access db like:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nx"&gt;user.can_see_this&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt; &lt;span class="n"&gt;href&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"#"&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nx"&gt;Some&lt;/span&gt; &lt;span class="k"&gt;link&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="nx"&gt;endif&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Django now raise &lt;code&gt;TransactionManagementError&lt;/code&gt; complaining I have pending commit/rollback. It doesn't make sense because I can verify that the line that executed &lt;code&gt;transaction.commit()&lt;/code&gt; was reached in the views above. Only after reading through &lt;a href="https://code.djangoproject.com/ticket/18080"&gt;this ticket&lt;/a&gt; on django issue tracker, I'd immediately remember the real issue.&lt;/p&gt;
+&lt;p&gt;Turn out this caused by new behavior of django transaction in 1.3 and above. Before 1.3, transaction only marked as dirty if we did any write database operation but since 1.3 and above, any database operation will mark the transaction as dirty. So the following code
+will work before 1.3:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@transaction.commit_manually&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;sendmessage&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;transaction&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;rollback&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="n"&gt;user&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;User&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;objects&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pk&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="err"&gt; &lt;/span&gt; &lt;span class="err"&gt; &lt;/span&gt; &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;HttpResponse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'OK'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;All database operation now will mark the transaction as dirty and since we access the db in template - which happened during render after we called commit(), it obvious now why django complain we unclosed transaction.&lt;/p&gt;
+&lt;p&gt;It should be written like below:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@transaction.commit_manually&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;send_message&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;context&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+    &lt;span class="c"&gt;# do some stuff&lt;/span&gt;
+    &lt;span class="n"&gt;response&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;render&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;'path/to/template.html'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;context&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;transaction&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;commit&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;response&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</description><category>python</category><category>django</category><category>db</category><category>transaction</category><guid>http://importerror.com/posts/django-transactioncommit_manually-and-accessing-db-from-template.html</guid><pubDate>Mon, 11 Nov 2013 19:37:17 GMT</pubDate></item><item><title>Django From Scratch</title><link>http://importerror.com/posts/django-from-scratch.html</link><description>&lt;div&gt;&lt;div class="contents alert alert-info pull-left topic"&gt;
+&lt;p class="first sidebar-title"&gt;Contents&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;&lt;a href="http://importerror.com/posts/django-from-scratch.html#namespace"&gt;Namespace&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://importerror.com/posts/django-from-scratch.html#views"&gt;Views&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://importerror.com/posts/django-from-scratch.html#models"&gt;Models&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/div&gt;
+&lt;p&gt;There are a lot of tutorials out there on Django and the official documentation also has one. For this post, I decided not to go through the typical route on how to get started with django. Let's 'ignore' the best practices and focus on what actually work and hopefully we can learn something along the way. So let's get started by downloading Django itself from the website.&lt;/p&gt;
+&lt;p class="more"&gt;&lt;a href="http://importerror.com/posts/django-from-scratch.html"&gt;Read more…&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><category>django</category><category>python</category><guid>http://importerror.com/posts/django-from-scratch.html</guid><pubDate>Sat, 02 Nov 2013 18:34:04 GMT</pubDate></item></channel></rss>

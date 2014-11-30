@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ms"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="We failed at some point in our life"><meta name="author" content="Mohd Kamal Bin Mustafa"><title>ImportError | ImportError</title><link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../assets/css/rst.css" rel="stylesheet" type="text/css"><link href="../assets/css/code.css" rel="stylesheet" type="text/css"><link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css"><link href="../assets/css/theme.css" rel="stylesheet" type="text/css"><link rel="canonical" href="http://importerror.com/ms/index.html"><!--[if lt IE 9]>
+<!DOCTYPE html><html lang="ms"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="We failed at some point in our life"><meta name="author" content="Mohd Kamal Bin Mustafa"><title>ImportError | ImportError</title><link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../assets/css/rst.css" rel="stylesheet" type="text/css"><link href="../assets/css/code.css" rel="stylesheet" type="text/css"><link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css"><link href="../assets/css/theme.css" rel="stylesheet" type="text/css"><link href="../assets/css/custom.css" rel="stylesheet" type="text/css"><link rel="canonical" href="http://k4ml.github.io/ms/index.html"><!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
     <![endif]--><link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../rss.xml"><link rel="alternate" type="application/rss+xml" title="RSS (ms)" href="rss.xml"></head><body>
 <!-- Menubar -->
@@ -11,7 +11,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://importerror.com">ImportError</a>
+            <a class="navbar-brand" href="http://k4ml.github.io">ImportError</a>
         </div><!-- /.navbar-header -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav"><li><a href="../archive.html">Arkib</a>
@@ -101,7 +101,27 @@ tetapi secara asasnya adalah seperti berikut:-</p>
 <li>
 <p>$_POST dihasilkan daripada Body jadi kita boleh terus <code>split</code> data tersebut berdasarkan simbol '&amp;'.</p>
 </li>
-</ul><p>Ini adalah penerangan dalam bentuk yang amat ringkas bagaimana input untuk PHP dihasilkan. Saya akan cuba
+</ul><p>PHP bagaimana pun hanya memproses POST data dalam bentuk <code>application/x-www-urlencoded</code> untuk dimasukkan ke dalam
+superglobal <code>$_POST</code>. Ini mungkin kerana browser hanya terhad untuk menghantar data dalam format tersebut (selain
+ <code>multipart/form-data</code> untuk upload file) maka PHP tidak memproses data dalam format yang lain. Tetapi jika anda
+ menghantar data menggunakan client HTTP selain browser, ataupun menggunakan <code>XMLHttpRequest</code> (AJAX), anda mungkin
+ menghantar dalam bentuk JSON (<code>application/json</code>) atau XML (<code>application/xml</code>). Dalam kes ini anda boleh mengakses
+ terus input stream PHP seperti berikut:-</p>
+<div class="code"><pre><span class="x">$data_json = json_decode(file_get_contents('php://input'));</span>
+</pre></div>
+
+
+<p>Jika request kita adalah seperti berikut:-</p>
+<div class="code"><pre><span class="n">POST</span> <span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">php</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span> <span class="n">application</span><span class="o">/</span><span class="n">json</span>
+<span class="n">User</span><span class="o">-</span><span class="n">Agent</span><span class="o">:</span> <span class="n">Mozilla</span><span class="o">/</span><span class="mf">5.0</span> <span class="p">(</span><span class="n">X11</span><span class="p">;</span> <span class="n">Linux</span> <span class="n">i686</span><span class="p">)</span> <span class="n">AppleWebKit</span><span class="o">/</span><span class="mf">537.17</span> <span class="p">(</span><span class="n">KHTML</span><span class="p">,</span> <span class="n">like</span> <span class="n">Gecko</span><span class="p">)</span> <span class="n">Chrome</span><span class="o">/</span><span class="mf">24.0</span><span class="p">.</span>
+
+<span class="p">{</span><span class="s">"username"</span><span class="o">:</span> <span class="s">"kamal"</span><span class="p">,</span> <span class="s">"address"</span><span class="o">:</span> <span class="s">"jb"</span><span class="p">}</span>
+</pre></div>
+
+
+<p><code>php://input</code> akan return JSON pada bahagian body.</p>
+<p>Ini adalah penerangan dalam bentuk yang amat ringkas bagaimana input untuk PHP dihasilkan. Saya akan cuba
 kembangkan topik ini dalam tulisan akan datang.</p></div>
         
         </div>

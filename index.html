@@ -60,7 +60,124 @@
             <div class="col-md-8 col-md-push-4">
             
     
-        <article class="postbox h-entry post-text"><h1 class="p-name"><a href="posts/django-where-does-the-application-start.html" class="u-url">Django: Where does the application start ?</a>
+        <article class="postbox h-entry post-text"><h1 class="p-name"><a href="posts/ansible-manage-users-from-central-file.html" class="u-url">Ansible: Manage users from central file</a>
+        <small>  
+             Posted: <time class="published dt-published" datetime="2015-04-01T23:30:52+08:00">2015-04-01 23:30</time></small></h1>
+        <hr><div class="p-summary">
+        <div><p>I want to achieve this kind of playbook:-</p>
+<div class="code"><pre><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Development server</span>
+  <span class="l-Scalar-Plain">hosts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">devserver</span>
+  <span class="l-Scalar-Plain">sudo</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+  <span class="l-Scalar-Plain">vars_files</span><span class="p-Indicator">:</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">data/users/users.yml</span>
+  <span class="l-Scalar-Plain">vars</span><span class="p-Indicator">:</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">users</span><span class="p-Indicator">:</span>
+        <span class="p-Indicator">-</span> <span class="s">"{{</span><span class="nv"> </span><span class="s">all_users.ali</span><span class="nv"> </span><span class="s">}}"</span>
+        <span class="p-Indicator">-</span> <span class="s">"{{</span><span class="nv"> </span><span class="s">all_users.kamal</span><span class="nv"> </span><span class="s">}}"</span>
+  <span class="l-Scalar-Plain">roles</span><span class="p-Indicator">:</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">development</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">mysql-client</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">users</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">common</span>
+</pre></div>
+
+
+<p>Users should be defined in a central file but in playbook for each hosts, I should be
+able to mix and match users like above. The file <code>data/users/users.yml</code> above look like:-</p>
+<div class="code"><pre><span class="l-Scalar-Plain">all_users</span><span class="p-Indicator">:</span>
+    <span class="l-Scalar-Plain">ali</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ali</span>
+        <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Ali Ahmad</span>
+        <span class="l-Scalar-Plain">groups</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">'admin'</span><span class="p-Indicator">]</span>
+        <span class="l-Scalar-Plain">ssh_key</span><span class="p-Indicator">:</span>
+          <span class="p-Indicator">-</span> <span class="s">"ssh-dss</span><span class="nv"> </span><span class="s">AAAA</span><span class="nv"> </span><span class="s">..."</span>
+
+    <span class="l-Scalar-Plain">kamal</span><span class="p-Indicator">:</span>
+        <span class="l-Scalar-Plain">username</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">kamal</span>
+        <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Kamal Mustafa</span>
+        <span class="l-Scalar-Plain">groups</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">'admin'</span><span class="p-Indicator">]</span>
+        <span class="l-Scalar-Plain">ssh_key</span><span class="p-Indicator">:</span>
+          <span class="p-Indicator">-</span> <span class="s">"ssh-rsa</span><span class="nv"> </span><span class="s">AAAA</span><span class="nv"> </span><span class="s">..."</span>
+
+<span class="l-Scalar-Plain">users_deleted</span><span class="p-Indicator">:</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">user1</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">user2</span>
+</pre></div>
+
+
+<p>Initially I used <a href="https://github.com/mivok/ansible-users/blob/master/tasks/main.yml">ansible-users</a> roles but
+it has users defined in <code>group_vars</code> file. It allow me to separate users by group but that also mean if some
+users exists in multiple groups, I have to repeat defining the user data.</p>
+<p>My first attempt then look like this:-</p>
+<div class="code"><pre><span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Development server</span>
+  <span class="l-Scalar-Plain">hosts</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">devserver</span>
+  <span class="l-Scalar-Plain">sudo</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+  <span class="l-Scalar-Plain">vars_files</span><span class="p-Indicator">:</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">data/users/users.yml</span>
+  <span class="l-Scalar-Plain">roles</span><span class="p-Indicator">:</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">development</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">mysql-client</span>
+
+  <span class="l-Scalar-Plain">tasks</span><span class="p-Indicator">:</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">include</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">tasks/add_user.yml accounts_to_add={{ all_users }}</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">include</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">tasks/common.yml users={{ all_users }}</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">include</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">tasks/delete_user.yml accounts_to_delete={{ deleted_users }}</span>
+</pre></div>
+
+
+<p>With <code>data/users/users.yml</code> defined as:-</p>
+<div class="code"><pre><span class="l-Scalar-Plain">all_users</span><span class="p-Indicator">:</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">ali</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">kamal</span>
+    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">aman</span>
+</pre></div>
+
+
+<p>And the tasks <code>add_user.yml</code> was very clunkyly defined:-</p>
+<div class="code"><pre><span class="nn">---</span>
+
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Create user</span>
+  <span class="l-Scalar-Plain">user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">home=/home/{{ item }} name={{ item }} shell=/bin/bash state=present</span>
+  <span class="l-Scalar-Plain">with_items</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">accounts_to_add</span>
+
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Add SSH key</span>
+  <span class="l-Scalar-Plain">authorized_key</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">user={{ item }} key="{{ lookup('file', playbook_dir + '/data/users/' + item + '/key.pub') }}"</span>
+  <span class="l-Scalar-Plain">with_items</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">accounts_to_add</span>
+  <span class="l-Scalar-Plain">tags</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">'user-config'</span><span class="p-Indicator">]</span>
+
+<span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Lock user {{ item }}</span>
+  <span class="l-Scalar-Plain">command</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">usermod --lock {{ item }}</span>
+  <span class="l-Scalar-Plain">with_items</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">accounts_to_add</span>
+  <span class="l-Scalar-Plain">tags</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="s">'user-config'</span><span class="p-Indicator">]</span>
+</pre></div>
+
+
+<p>Had to deal with the <code>lookup()</code> issue where it keep giving errors:-</p>
+<div class="code"><pre><span class="nl">fatal:</span> <span class="p">[</span><span class="n">devserver</span><span class="p">]</span> <span class="o">=&gt;</span> <span class="n">A</span> <span class="n">variable</span> <span class="n">inserted</span> <span class="n">a</span> <span class="n">new</span> <span class="n">parameter</span> <span class="n">into</span> <span class="n">the</span> <span class="n">module</span> <span class="n">args</span><span class="p">.</span> <span class="n">Be</span> <span class="n">sure</span> <span class="n">to</span> <span class="n">quote</span> <span class="n">variables</span> <span class="k">if</span> <span class="n">they</span> <span class="n">contain</span> <span class="n">equal</span> <span class="n">signs</span> <span class="p">(</span><span class="k">for</span> <span class="n">example</span><span class="o">:</span> <span class="s">"{{var}}"</span><span class="p">).</span>
+</pre></div>
+
+
+<p>The answer actually already there, you have to quote the <code>lookup(...)</code> but I spent hours looking for solution,
+the price has to pay when you didn't read error message properly, sigh ...</p>
+<p>I'm not really satisfied with this solution since it mean for every playbook, you'll keep repeating the tasks
+section. [ansible-users] roles is better here since you just include the roles and the users variables being
+inferred automatically. So I keep searching for solution to split <code>group_vars</code> file until I realized can reference
+variables in the playbook.</p></div>
+        
+        </div>
+        
+            
+    
+        
+    <p>
+    
+        <a href="posts/ansible-manage-users-from-central-file.html#disqus_thread" data-disqus-identifier="cache/posts/ansible-manage-users-from-central-file.html">Comments</a>
+    
+
+    
+
+        
+        </p></article><article class="postbox h-entry post-text"><h1 class="p-name"><a href="posts/django-where-does-the-application-start.html" class="u-url">Django: Where does the application start ?</a>
         <small>  
              Posted: <time class="published dt-published" datetime="2014-11-01T16:00:14+08:00">2014-11-01 16:00</time></small></h1>
         <hr><div class="p-summary">
@@ -482,62 +599,6 @@ also discovered few other small communities, mostly country focused while going 
     
 
         
-        </p></article><article class="postbox h-entry post-text"><h1 class="p-name"><a href="posts/django-transactioncommit_manually-and-accessing-db-from-template.html" class="u-url">Django: @transaction.commit_manually and accessing db from template</a>
-        <small>  
-             Posted: <time class="published dt-published" datetime="2013-11-12T03:37:17+08:00">2013-11-12 03:37</time></small></h1>
-        <hr><div class="p-summary">
-        <div><p>Bumped into this issue twice and because the first time it happened was almost a year ago, in different project, I'd already lost my mental note about it when it happened again for second time. Our views functions are wrapped inside <code>@transaction.commit_manually</code>, which look like below:-</p>
-<div class="code"><pre><span class="nd">@transaction.commit_manually</span>
-<span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="n">context</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="c"># do some stuff</span>
-    <span class="n">transaction</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">'path/to/template.html'</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
-</pre></div>
-
-
-<p>This work flawlessly until recently, I need to add some logic in the template that need to check certain user's permission, before displaying the part. In the template, it just some function call that access db like:-</p>
-<div class="code"><pre><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">user.can_see_this</span> <span class="o">%</span><span class="p">}</span>
-<span class="o">&lt;</span><span class="nx">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">"#"</span><span class="o">&gt;</span><span class="nx">Some</span> <span class="k">link</span><span class="o">&lt;/</span><span class="nx">a</span><span class="o">&gt;</span>
-<span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
-</pre></div>
-
-
-<p>Django now raise <code>TransactionManagementError</code> complaining I have pending commit/rollback. It doesn't make sense because I can verify that the line that executed <code>transaction.commit()</code> was reached in the views above. Only after reading through <a href="https://code.djangoproject.com/ticket/18080">this ticket</a> on django issue tracker, I'd immediately remember the real issue.</p>
-<p>Turn out this caused by new behavior of django transaction in 1.3 and above. Before 1.3, transaction only marked as dirty if we did any write database operation but since 1.3 and above, any database operation will mark the transaction as dirty. So the following code
-will work before 1.3:-</p>
-<div class="code"><pre><span class="nd">@transaction.commit_manually</span>
-<span class="k">def</span> <span class="nf">sendmessage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="n">transaction</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
-<span class="err"> </span> <span class="err"> </span> <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="err"> </span> <span class="err"> </span> <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">'OK'</span><span class="p">)</span>
-</pre></div>
-
-
-<p>All database operation now will mark the transaction as dirty and since we access the db in template - which happened during render after we called commit(), it obvious now why django complain we unclosed transaction.</p>
-<p>It should be written like below:-</p>
-<div class="code"><pre><span class="nd">@transaction.commit_manually</span>
-<span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="n">context</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="c"># do some stuff</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">'path/to/template.html'</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
-    <span class="n">transaction</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">response</span>
-</pre></div></div>
-        
-        </div>
-        
-            
-    
-        
-    <p>
-    
-        <a href="posts/django-transactioncommit_manually-and-accessing-db-from-template.html#disqus_thread" data-disqus-identifier="cache/posts/django-transactioncommit_manually-and-accessing-db-from-template.html">Comments</a>
-    
-
-    
-
-        
         </p></article><div>
         <ul class="pager"><li class="next">
                 <a href="index-2.html" rel="next">Older posts →</a>
@@ -580,7 +641,7 @@ positions, strategies or opinions.</p>
         <!--End of body content-->
 
         <footer>
-            Contents © 2014         <a href="mailto:joe@demo.site">Mohd Kamal Bin Mustafa</a> - Powered by         <a href="http://getnikola.com">Nikola</a>         
+            Contents © 2015         <a href="mailto:joe@demo.site">Mohd Kamal Bin Mustafa</a> - Powered by         <a href="http://getnikola.com">Nikola</a>         
         </footer></div>
 </div>
 

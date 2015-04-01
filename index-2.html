@@ -60,7 +60,63 @@
             <div class="col-md-8 col-md-push-4">
             
     
-        <article class="postbox h-entry post-text"><h1 class="p-name"><a href="posts/django-from-scratch.html" class="u-url">Django From Scratch</a>
+        <article class="postbox h-entry post-text"><h1 class="p-name"><a href="posts/django-transactioncommit_manually-and-accessing-db-from-template.html" class="u-url">Django: @transaction.commit_manually and accessing db from template</a>
+        <small>  
+             Posted: <time class="published dt-published" datetime="2013-11-12T03:37:17+08:00">2013-11-12 03:37</time></small></h1>
+        <hr><div class="p-summary">
+        <div><p>Bumped into this issue twice and because the first time it happened was almost a year ago, in different project, I'd already lost my mental note about it when it happened again for second time. Our views functions are wrapped inside <code>@transaction.commit_manually</code>, which look like below:-</p>
+<div class="code"><pre><span class="nd">@transaction.commit_manually</span>
+<span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c"># do some stuff</span>
+    <span class="n">transaction</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">'path/to/template.html'</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</pre></div>
+
+
+<p>This work flawlessly until recently, I need to add some logic in the template that need to check certain user's permission, before displaying the part. In the template, it just some function call that access db like:-</p>
+<div class="code"><pre><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">user.can_see_this</span> <span class="o">%</span><span class="p">}</span>
+<span class="o">&lt;</span><span class="nx">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">"#"</span><span class="o">&gt;</span><span class="nx">Some</span> <span class="k">link</span><span class="o">&lt;/</span><span class="nx">a</span><span class="o">&gt;</span>
+<span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+</pre></div>
+
+
+<p>Django now raise <code>TransactionManagementError</code> complaining I have pending commit/rollback. It doesn't make sense because I can verify that the line that executed <code>transaction.commit()</code> was reached in the views above. Only after reading through <a href="https://code.djangoproject.com/ticket/18080">this ticket</a> on django issue tracker, I'd immediately remember the real issue.</p>
+<p>Turn out this caused by new behavior of django transaction in 1.3 and above. Before 1.3, transaction only marked as dirty if we did any write database operation but since 1.3 and above, any database operation will mark the transaction as dirty. So the following code
+will work before 1.3:-</p>
+<div class="code"><pre><span class="nd">@transaction.commit_manually</span>
+<span class="k">def</span> <span class="nf">sendmessage</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">transaction</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+<span class="err"> </span> <span class="err"> </span> <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pk</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="err"> </span> <span class="err"> </span> <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="s">'OK'</span><span class="p">)</span>
+</pre></div>
+
+
+<p>All database operation now will mark the transaction as dirty and since we access the db in template - which happened during render after we called commit(), it obvious now why django complain we unclosed transaction.</p>
+<p>It should be written like below:-</p>
+<div class="code"><pre><span class="nd">@transaction.commit_manually</span>
+<span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c"># do some stuff</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">'path/to/template.html'</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    <span class="n">transaction</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">response</span>
+</pre></div></div>
+        
+        </div>
+        
+            
+    
+        
+    <p>
+    
+        <a href="posts/django-transactioncommit_manually-and-accessing-db-from-template.html#disqus_thread" data-disqus-identifier="cache/posts/django-transactioncommit_manually-and-accessing-db-from-template.html">Comments</a>
+    
+
+    
+
+        
+        </p></article><article class="postbox h-entry post-text"><h1 class="p-name"><a href="posts/django-from-scratch.html" class="u-url">Django From Scratch</a>
         <small>  
              Posted: <time class="published dt-published" datetime="2013-11-03T02:34:04+08:00">2013-11-03 02:34</time></small></h1>
         <hr><div class="p-summary">
@@ -266,7 +322,7 @@ positions, strategies or opinions.</p>
         <!--End of body content-->
 
         <footer>
-            Contents © 2014         <a href="mailto:joe@demo.site">Mohd Kamal Bin Mustafa</a> - Powered by         <a href="http://getnikola.com">Nikola</a>         
+            Contents © 2015         <a href="mailto:joe@demo.site">Mohd Kamal Bin Mustafa</a> - Powered by         <a href="http://getnikola.com">Nikola</a>         
         </footer></div>
 </div>
 

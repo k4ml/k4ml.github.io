@@ -60,7 +60,48 @@
             <div class="col-md-8 col-md-push-4">
             
     
-        <article class="postbox h-entry post-text"><h1 class="p-name"><a href="posts/ansible-manage-users-from-central-file.html" class="u-url">Ansible: Manage users from central file</a>
+        <article class="postbox h-entry post-text"><h1 class="p-name"><a href="posts/git-remove-files-from-commit.html" class="u-url">GIT: Remove files from commit</a>
+        <small>  
+             Posted: <time class="published dt-published" datetime="2015-06-20T12:00:40+08:00">2015-06-20 12:00</time></small></h1>
+        <hr><div class="p-summary">
+        <div><p>There are <a href="http://stackoverflow.com/questions/12481639/remove-files-from-git-commit">lot of ways</a> if you search for this, mostly involve in ammending the commit. But if you only accidentally added the files in a development/temporary branch, there's much simpler way than meddling around with the history.</p>
+<p>When you merge branch, git will automatically commit all the changes from that branch. But there's a way to <a href="http://stackoverflow.com/questions/8640887/git-merge-without-auto-commit">stop that</a>.</p>
+<div class="code"><pre><span class="err">$</span> <span class="n">git</span> <span class="n">merge</span> <span class="n">new</span><span class="o">-</span><span class="n">layout</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">commit</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">ff</span>
+<span class="n">Automatic</span> <span class="n">merge</span> <span class="n">went</span> <span class="n">well</span><span class="p">;</span> <span class="n">stopped</span> <span class="n">before</span> <span class="n">committing</span> <span class="n">as</span> <span class="n">requested</span>
+<span class="n">kamal</span><span class="err">@</span><span class="n">thinkblack</span><span class="o">:~/</span><span class="n">python</span><span class="o">/</span><span class="n">harga</span>
+<span class="err">$</span> <span class="n">git</span> <span class="n">status</span>
+<span class="cp"># On branch new-layout-fixout</span>
+<span class="cp"># Changes to be committed:</span>
+<span class="cp">#</span>
+<span class="cp">#       modified:   harga/models.py</span>
+<span class="cp">#       modified:   harga/search_indexes.py</span>
+<span class="cp">#       modified:   harga/templates/base.html</span>
+<span class="cp">#       new file:   harga/templates/sidebar.html</span>
+<span class="cp">#       new file:   scrapers/scrapers.db</span>
+</pre></div>
+
+
+<p>Let say <code>scrapers/scrapers.db</code> is the file that we accidentally committed and we don't want it. Just remove it from the index:-</p>
+<div class="code"><pre><span class="n">git</span> <span class="n">reset</span> <span class="n">HEAD</span> <span class="n">scrapers</span><span class="o">/</span><span class="n">scrapers</span><span class="p">.</span><span class="n">db</span>
+</pre></div>
+
+
+<p>Now the file has been removed, we can commit the rest of the changes.</p></div>
+        
+        </div>
+        
+            
+    
+        
+    <p>
+    
+        <a href="posts/git-remove-files-from-commit.html#disqus_thread" data-disqus-identifier="cache/posts/git-remove-files-from-commit.html">Comments</a>
+    
+
+    
+
+        
+        </p></article><article class="postbox h-entry post-text"><h1 class="p-name"><a href="posts/ansible-manage-users-from-central-file.html" class="u-url">Ansible: Manage users from central file</a>
         <small>  
              Posted: <time class="published dt-published" datetime="2015-04-01T23:30:52+08:00">2015-04-01 23:30</time></small></h1>
         <hr><div class="p-summary">
@@ -575,25 +616,6 @@ also discovered few other small communities, mostly country focused while going 
     <p>
     
         <a href="posts/javascript-self-invoking-function.html#disqus_thread" data-disqus-identifier="cache/posts/javascript-self-invoking-function.html">Comments</a>
-    
-
-    
-
-        
-        </p></article><article class="postbox h-entry post-text"><h1 class="p-name"><a href="posts/angularjs-event-handler-attached-to-all-anchor-tag-a.html" class="u-url">Angularjs: Event handler attached to all anchor tag 'a'</a>
-        <small>  
-             Posted: <time class="published dt-published" datetime="2013-11-18T01:19:58+08:00">2013-11-18 01:19</time></small></h1>
-        <hr><div class="p-summary">
-        <p>Noticed today that angular <a href="http://docs.angularjs.org/api/ng.directive:a">modify the behavior</a> of 'a' tag to include some event handler by default. Discover this after getting error <code>Object #&lt;g&gt; has no method 'on'</code> error in my dev console. The error actually showing up after I added jquery to the page but the fact that angular attaching event to all 'a' tag really suprising. I have some 'normal' links I don't want any fancy behavior, just a link. Found a <a href="http://badwing.com/angularjs-heavy-handed-anchor-tag-disable-directive/">post on how to create new directive to disable the behavior</a> but for now I manage to escape from this by simply not using angular together with jquery.</p>
-        
-        </div>
-        
-            
-    
-        
-    <p>
-    
-        <a href="posts/angularjs-event-handler-attached-to-all-anchor-tag-a.html#disqus_thread" data-disqus-identifier="cache/posts/angularjs-event-handler-attached-to-all-anchor-tag-a.html">Comments</a>
     
 
     

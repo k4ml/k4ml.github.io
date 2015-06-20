@@ -10,9 +10,9 @@ There are [lot of ways][1] if you search for this, mostly involve in ammending t
 When you merge branch, git will automatically commit all the changes from that branch. But there's a way to [stop that][2].
 
 ```
+$ git checkout -b new-layout-fixout
 $ git merge new-layout --no-commit --no-ff
 Automatic merge went well; stopped before committing as requested
-kamal@thinkblack:~/python/harga
 $ git status
 # On branch new-layout-fixout
 # Changes to be committed:

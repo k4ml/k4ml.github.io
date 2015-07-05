@@ -108,9 +108,9 @@
 
 
 <p>This work flawlessly until recently, I need to add some logic in the template that need to check certain user's permission, before displaying the part. In the template, it just some function call that access db like:-</p>
-<div class="code"><pre><span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="nx">user.can_see_this</span> <span class="o">%</span><span class="p">}</span>
-<span class="o">&lt;</span><span class="nx">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">"#"</span><span class="o">&gt;</span><span class="nx">Some</span> <span class="k">link</span><span class="o">&lt;/</span><span class="nx">a</span><span class="o">&gt;</span>
-<span class="p">{</span><span class="o">%</span> <span class="nx">endif</span> <span class="o">%</span><span class="p">}</span>
+<div class="code"><pre><span class="cp">{%</span> <span class="k">if</span> <span class="nv">user.can_see_this</span> <span class="cp">%}</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>Some link<span class="nt">&lt;/a&gt;</span>
+<span class="cp">{%</span> <span class="k">endif</span> <span class="cp">%}</span>
 </pre></div>
 
 

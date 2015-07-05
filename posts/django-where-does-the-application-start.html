@@ -1,6 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="author" content="Mohd Kamal Bin Mustafa"><title>Django: Where does the application start ? | ImportError</title><link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../assets/css/rst.css" rel="stylesheet" type="text/css"><link href="../assets/css/code.css" rel="stylesheet" type="text/css"><link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css"><link href="../assets/css/theme.css" rel="stylesheet" type="text/css"><link href="../assets/css/custom.css" rel="stylesheet" type="text/css"><link rel="canonical" href="http://k4ml.github.io/posts/django-where-does-the-application-start.html"><!--[if lt IE 9]>
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Walkthrough into the internal parts of Django application, where the code start executing."><meta name="author" content="Mohd Kamal Bin Mustafa"><title>Django: Where does the application start ? | ImportError</title><link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../assets/css/rst.css" rel="stylesheet" type="text/css"><link href="../assets/css/code.css" rel="stylesheet" type="text/css"><link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css"><link href="../assets/css/theme.css" rel="stylesheet" type="text/css"><link href="../assets/css/custom.css" rel="stylesheet" type="text/css"><link rel="canonical" href="http://k4ml.github.io/posts/django-where-does-the-application-start.html"><!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
-    <![endif]--><link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../rss.xml"><link rel="alternate" type="application/rss+xml" title="RSS (ms)" href="../ms/rss.xml"><!-- Open Graph Meta Tags BEGIN --><meta content=" Django: Where does the application start ? " property="og:title"><meta content="ImportError" property="og:site_name"><meta content="http://k4ml.github.io/posts/django-where-does-the-application-start.html" property="og:url"><meta content="" property="og:description"><meta content="article" property="og:type"><meta content="http://i.imgur.com/r0ao0RJ.png" property="og:image"><!-- Open Graph Meta Tags END --></head><body>
+    <![endif]--><link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../rss.xml"><link rel="alternate" type="application/rss+xml" title="RSS (ms)" href="../ms/rss.xml"><!-- Open Graph Meta Tags BEGIN --><meta content=" Django: Where does the application start ? " property="og:title"><meta content="ImportError" property="og:site_name"><meta content="http://k4ml.github.io/posts/django-where-does-the-application-start.html" property="og:url"><meta content="Walkthrough into the internal parts of Django application, where the code start executing." property="og:description"><meta content="article" property="og:type"><meta content="http://i.imgur.com/r0ao0RJ.png" property="og:image"><!-- Open Graph Meta Tags END --></head><body>
 <!-- Menubar -->
 
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"><div class="container-fluid"><!-- This keeps the margins nice -->
@@ -109,6 +109,8 @@ web server, either <code>mod_wsgi</code>, <code>gunicorn</code>, <code>Paste</co
 WSGI server you can find on PyPI. I can still remember the day when there's none pure Python
 WSGI server exists (except CherryPy) and how I'd really envy Rails's community for having Mongrel.
 That day has long gone.</p>
+<!-- TEASER_END -->
+
 <p>Let's dive to the first entry point - when you run your django application through the
 <code>manage.py runserver</code> command. Typical django application (as generated) by the <code>startproject</code> command
 has a file called <code>manage.py</code> at the root of the project directory. This is the file that developer use
@@ -156,10 +158,114 @@ at the bottom of the source code. It just a wrapper to other function actually.<
 <span class="sd">    """</span>
     <span class="n">utility</span> <span class="o">=</span> <span class="n">ManagementUtility</span><span class="p">(</span><span class="n">argv</span><span class="p">)</span>
     <span class="n">utility</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
-</pre></div></div>
+</pre></div>
+
+
+<p><code>ManagementUtility</code> class however not really interesting. It just some logic to find out which command module to execute
+based on user's command parameter. For <code>manage.py runserver</code>, the python module that will be executed is <code>django/core/management/commands/runserver.py</code>. So let's take a look into this module:-</p>
+<div class="code"><pre><span class="k">def</span> <span class="nf">get_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">options</span><span class="p">):</span>
+        <span class="sd">"""</span>
+<span class="sd">        Returns the default WSGI handler for the runner.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">get_internal_wsgi_application</span><span class="p">()</span>
+</pre></div>
+
+
+<p>This is around line 56 in <a href="https://github.com/django/django/blob/master/django/core/management/commands/runserver.py#L56">current master on Github</a>. The import at the top of the module look like this:-</p>
+<div class="code"><pre><span class="kn">from</span> <span class="nn">django.core.servers.basehttp</span> <span class="kn">import</span> <span class="n">get_internal_wsgi_application</span><span class="p">,</span> <span class="n">run</span>
+</pre></div>
+
+
+<p>So that would be our next target - <code>django/core/servers/basehttp.py</code>. The code is like this:-</p>
+<div class="code"><pre><span class="k">def</span> <span class="nf">get_internal_wsgi_application</span><span class="p">():</span>
+    <span class="sd">"""</span>
+<span class="sd">    Loads and returns the WSGI application as configured by the user in</span>
+<span class="sd">    ``settings.WSGI_APPLICATION``. With the default ``startproject`` layout,</span>
+<span class="sd">    this will be the ``application`` object in ``projectname/wsgi.py``.</span>
+<span class="sd">    This function, and the ``WSGI_APPLICATION`` setting itself, are only useful</span>
+<span class="sd">    for Django's internal server (runserver); external WSGI servers should just</span>
+<span class="sd">    be configured to point to the correct application object directly.</span>
+<span class="sd">    If settings.WSGI_APPLICATION is not set (is ``None``), we just return</span>
+<span class="sd">    whatever ``django.core.wsgi.get_wsgi_application`` returns.</span>
+<span class="sd">    """</span>
+    <span class="kn">from</span> <span class="nn">django.conf</span> <span class="kn">import</span> <span class="n">settings</span>
+    <span class="n">app_path</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">settings</span><span class="p">,</span> <span class="s">'WSGI_APPLICATION'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">app_path</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">get_wsgi_application</span><span class="p">()</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">import_string</span><span class="p">(</span><span class="n">app_path</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s">"WSGI application '</span><span class="si">%(app_path)s</span><span class="s">' could not be loaded; "</span>
+            <span class="s">"Error importing module: '</span><span class="si">%(exception)s</span><span class="s">'"</span> <span class="o">%</span> <span class="p">({</span>
+                <span class="s">'app_path'</span><span class="p">:</span> <span class="n">app_path</span><span class="p">,</span>
+                <span class="s">'exception'</span><span class="p">:</span> <span class="n">e</span><span class="p">,</span>
+            <span class="p">})</span>
+        <span class="p">)</span>
+        <span class="n">six</span><span class="o">.</span><span class="n">reraise</span><span class="p">(</span><span class="n">ImproperlyConfigured</span><span class="p">,</span> <span class="n">ImproperlyConfigured</span><span class="p">(</span><span class="n">msg</span><span class="p">),</span>
+                    <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+
+
+<p>So now we have the full trace of how from running the command <code>manage.py runserver</code>, which code is being executed. At this point,
+it really helpful if we understand the basic of WSGI spec. Django, at the very core is nothing more than a WSGI application. The
+basic of WSGI is like this:-</p>
+<div class="code"><pre><span class="k">def</span> <span class="nf">application</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
+    <span class="n">start_response</span><span class="p">(</span><span class="s">'200 OK'</span><span class="p">,</span> <span class="p">[(</span><span class="s">'Content-Type'</span><span class="p">,</span> <span class="s">'text/html'</span><span class="p">)])</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s">'hello world'</span><span class="p">]</span>
+</pre></div>
+
+
+<p>And the whole Django framework basically just an expansion of above function. So let's see where does the above snippet from
+Django would bring us:-</p>
+<div class="code"><pre><span class="kn">from</span> <span class="nn">django.core.wsgi</span> <span class="kn">import</span> <span class="n">get_wsgi_application</span>
+</pre></div>
+
+
+<div class="code"><pre><span class="kn">import</span> <span class="nn">django</span>
+<span class="kn">from</span> <span class="nn">django.core.handlers.wsgi</span> <span class="kn">import</span> <span class="n">WSGIHandler</span>
+
+<span class="k">def</span> <span class="nf">get_wsgi_application</span><span class="p">():</span>
+    <span class="sd">"""</span>
+<span class="sd">    The public interface to Django's WSGI support. Should return a WSGI</span>
+<span class="sd">    callable.</span>
+<span class="sd">    Allows us to avoid making django.core.handlers.WSGIHandler public API, in</span>
+<span class="sd">    case the internal WSGI implementation changes or moves in the future.</span>
+<span class="sd">    """</span>
+    <span class="n">django</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">WSGIHandler</span><span class="p">()</span>
+</pre></div>
+
+
+<p>In <code>django/core/handlers/wsgi.py</code>:-</p>
+<div class="code"><pre><span class="k">class</span> <span class="nc">WSGIHandler</span><span class="p">(</span><span class="n">base</span><span class="o">.</span><span class="n">BaseHandler</span><span class="p">):</span>
+    <span class="n">initLock</span> <span class="o">=</span> <span class="n">Lock</span><span class="p">()</span>
+    <span class="n">request_class</span> <span class="o">=</span> <span class="n">WSGIRequest</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
+        <span class="c"># Set up middleware if needed. We couldn't do this earlier, because</span>
+        <span class="c"># settings weren't available.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request_middleware</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">initLock</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="c"># Check that middleware is still uninitialized.</span>
+                    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_request_middleware</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">load_middleware</span><span class="p">()</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="c"># Unload whatever middleware we got</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_request_middleware</span> <span class="o">=</span> <span class="bp">None</span>
+                    <span class="k">raise</span>
+</pre></div>
+
+
+<p>Notice the similarity between the above code and the basic WSGI application we have seen here ? The difference is that the Django
+code above is using class, instead of simple function but the interface still remained similar as you can see in the method
+<code>__call__(self, environ, start_response)</code> above. This class, when instantiated, the instance will be callable just like function.</p>
+<p>So far we've only gone through the request/response part of Django. There's still a lot to cover - ORM, templates, middlewares, forms etc. This post was written in hurry so if I missed some key details, feel free to ask in the comments below. </p></div>
     </div>
     
-    </div>
+        <meta content="Walkthrough into the internal parts of Django application, where the code start executing." itemprop="description"></div>
     
     
         <ul class="pager"><li class="previous">

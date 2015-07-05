@@ -74,65 +74,65 @@
         Posted: <time class="published dt-published" datetime="2014-01-30T18:46:13+08:00" itemprop="datePublished">2014-01-30 18:46</time></small>
     <hr><div class="e-content" itemprop="articleBody text">
     <div><p>Cloning:-</p>
-<div class="code"><pre><span class="n">git</span> <span class="n">svn</span> <span class="n">clone</span> <span class="o">-</span><span class="n">s</span> <span class="o">-</span><span class="n">r</span> <span class="mi">600</span> <span class="n">https</span><span class="o">:</span><span class="c1">//your-domain.com/svn/project</span>
+<div class="code"><pre>git svn clone -s -r 600 https://your-domain.com/svn/project
 </pre></div>
 
 
 <p>Using <code>-r</code> to do shallow copy only at that point of svn revision. This help from pulling
 your whole svn repo when it's quite big. Sometime I got revmap error of some kind, probably because it can't find the parent of the particular revision which is before rev 600. In this case I just specify slightly lower svn rev number and see if it go through.</p>
-<div class="code"><pre><span class="n">cd</span> <span class="n">project</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">a</span>
-<span class="o">*</span> <span class="n">master</span>
-  <span class="n">remotes</span><span class="o">/</span><span class="n">trunk</span>
+<div class="code"><pre>cd project
+git branch -a
+* master
+  remotes/trunk
 </pre></div>
 
 
 <p>We can see that not all our svn branches get clone so next is to actually get all the branches that have been created since rev 600 since that probably contain the branch that you want to work on.</p>
-<div class="code"><pre><span class="n">cd</span> <span class="n">project</span>
-<span class="n">git</span> <span class="n">svn</span> <span class="n">fetch</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">a</span>
-<span class="o">*</span> <span class="n">master</span>
-  <span class="n">remotes</span><span class="o">/</span><span class="mi">135</span><span class="o">-</span><span class="n">feature1</span>
-  <span class="n">remotes</span><span class="o">/</span><span class="n">tags</span><span class="o">/</span><span class="n">release</span><span class="o">-</span><span class="mf">1.21</span>
-  <span class="n">remotes</span><span class="o">/</span><span class="n">trunk</span>
+<div class="code"><pre>cd project
+git svn fetch
+git branch -a
+* master
+  remotes/135-feature1
+  remotes/tags/release-1.21
+  remotes/trunk
 </pre></div>
 
 
 <p>Now we have all the svn branches we want to work on. Let's start checking out the branch
 and doing work in our local git branch:-</p>
-<div class="code"><pre><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="mi">135</span><span class="o">-</span><span class="n">feature1</span><span class="o">-</span><span class="n">svn</span> <span class="n">remotes</span><span class="o">/</span><span class="mi">135</span><span class="o">-</span><span class="n">feature1</span>
+<div class="code"><pre>git checkout -b 135-feature1-svn remotes/135-feature1
 </pre></div>
 
 
 <p>Above command create a local git branch from the remotes svn branch. We put suffix -svn to the branch name to avoid git complain <code>warning: refname '135-feature1' is ambiguous.</code> We can now make changes in the branch and commit it just like normal git repo. Once done we may want to commit back all the changes we've made to the main svn repo.</p>
-<div class="code"><pre><span class="cp"># make changes, hack, hack</span>
-<span class="n">git</span> <span class="n">add</span> <span class="p">.</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="err">'</span><span class="n">new</span> <span class="n">feature</span><span class="err">'</span>
-<span class="cp"># make changes again, hack, hack</span>
-<span class="n">git</span> <span class="n">add</span> <span class="p">.</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="err">'</span><span class="n">fix</span> <span class="n">new</span> <span class="n">feature</span><span class="err">'</span>
-<span class="n">git</span> <span class="n">svn</span> <span class="n">rebase</span>
-<span class="n">git</span> <span class="n">svn</span> <span class="n">dcommit</span>
+<div class="code"><pre># make changes, hack, hack
+git add .
+git commit -m 'new feature'
+# make changes again, hack, hack
+git add .
+git commit -m 'fix new feature'
+git svn rebase
+git svn dcommit
 </pre></div>
 
 
 <p>Committing back to svn is done using the <code>git svn dcommit</code> command. Always make a habit to <code>git svn rebase</code> first before committing to make sure we always in sync with the main svn repo. There's one thing I don't really like in above situation - dcommit basically send 2 commits back to the svn repo which are 'new-feature' and 'fix new feature'. This mean dcommit always recommit or replay back your git commit to the svn repo. I'd prefer to have single commit to svn.</p>
 <p>Can't find native way to do above so what I did is I'd never work in the '135-feature1' branch directly. Instead I create another branch from that branch where I did the real work.</p>
-<div class="code"><pre><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="mi">135</span><span class="o">-</span><span class="n">sub1</span> <span class="mi">135</span><span class="o">-</span><span class="n">feature1</span>
-<span class="cp"># hack, hack</span>
-<span class="n">git</span> <span class="n">add</span> <span class="p">.</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="err">'</span><span class="n">fix</span> <span class="n">sub1</span><span class="err">'</span>
-<span class="cp"># hack, hack</span>
-<span class="n">git</span> <span class="n">add</span> <span class="p">.</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="err">'</span><span class="n">fix</span> <span class="n">sub2</span><span class="err">'</span>
-<span class="n">git</span> <span class="n">checkout</span> <span class="mi">135</span><span class="o">-</span><span class="n">feature1</span>
-<span class="n">git</span> <span class="n">svn</span> <span class="n">rebase</span>
-<span class="n">git</span> <span class="n">merge</span> <span class="o">--</span><span class="n">squash</span> <span class="mi">135</span><span class="o">-</span><span class="n">sub1</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="err">'</span><span class="n">this</span> <span class="n">commit</span> <span class="n">will</span> <span class="n">be</span> <span class="n">send</span> <span class="n">back</span> <span class="n">to</span> <span class="n">svn</span><span class="err">'</span>
-<span class="n">git</span> <span class="n">svn</span> <span class="n">rebase</span>
-<span class="n">git</span> <span class="n">dcommit</span> <span class="o">-</span><span class="n">n</span> <span class="err">#</span> <span class="n">make</span> <span class="n">sure</span> <span class="n">it</span> <span class="n">will</span> <span class="n">commit</span> <span class="n">to</span> <span class="n">the</span> <span class="n">correct</span> <span class="n">svn</span> <span class="n">branch</span>
-<span class="n">git</span> <span class="n">dcommit</span>
-<span class="n">git</span> <span class="n">branch</span> <span class="o">-</span><span class="n">d</span> <span class="mi">135</span><span class="o">-</span><span class="n">sub1</span>
+<div class="code"><pre>git checkout -b 135-sub1 135-feature1
+# hack, hack
+git add .
+git commit -m 'fix sub1'
+# hack, hack
+git add .
+git commit -m 'fix sub2'
+git checkout 135-feature1
+git svn rebase
+git merge --squash 135-sub1
+git commit -m 'this commit will be send back to svn'
+git svn rebase
+git dcommit -n # make sure it will commit to the correct svn branch
+git dcommit
+git branch -d 135-sub1
 </pre></div></div>
     </div>
     

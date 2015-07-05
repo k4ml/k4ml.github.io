@@ -126,7 +126,7 @@ untuk Windows, package .deb untuk Debian/Ubuntu dan .dmg untuk pengguna MacOS.</
 <p>Kini anda berada dalam mesin sebenar (fizikal). Kita akan buat copy
 untuk mesin yang pertama. Buat satu file konfigurasi asas untuk mesin yang
 kita nak pakejkan ini. Simpan sebagai Vagrantfile.pkg:-</p>
-<div class="code"><pre><span class="ss">Vagrant</span><span class="p">:</span><span class="ss">:Config</span><span class="o">.</span><span class="n">run</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+<div class="code"><pre><span class="no">Vagrant</span><span class="o">::</span><span class="no">Config</span><span class="o">.</span><span class="n">run</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
     <span class="c1"># Forward apache</span>
     <span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">forward_port</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">8080</span>
 <span class="k">end</span>

@@ -93,23 +93,23 @@
     <hr><div class="e-content" itemprop="articleBody text">
     <div><p>There are <a href="http://stackoverflow.com/questions/12481639/remove-files-from-git-commit">lot of ways</a> if you search for this, mostly involve in ammending the commit. But if you only accidentally added the files in a development/temporary branch, there's much simpler way than meddling around with the history.</p>
 <p>When you merge branch, git will automatically commit all the changes from that branch. But there's a way to <a href="http://stackoverflow.com/questions/8640887/git-merge-without-auto-commit">stop that</a>.</p>
-<div class="code"><pre><span class="err">$</span> <span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">new</span><span class="o">-</span><span class="n">layout</span><span class="o">-</span><span class="n">fixout</span>
-<span class="err">$</span> <span class="n">git</span> <span class="n">merge</span> <span class="n">new</span><span class="o">-</span><span class="n">layout</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">commit</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">ff</span>
-<span class="n">Automatic</span> <span class="n">merge</span> <span class="n">went</span> <span class="n">well</span><span class="p">;</span> <span class="n">stopped</span> <span class="n">before</span> <span class="n">committing</span> <span class="n">as</span> <span class="n">requested</span>
-<span class="err">$</span> <span class="n">git</span> <span class="n">status</span>
-<span class="cp"># On branch new-layout-fixout</span>
-<span class="cp"># Changes to be committed:</span>
-<span class="cp">#</span>
-<span class="cp">#       modified:   harga/models.py</span>
-<span class="cp">#       modified:   harga/search_indexes.py</span>
-<span class="cp">#       modified:   harga/templates/base.html</span>
-<span class="cp">#       new file:   harga/templates/sidebar.html</span>
-<span class="cp">#       new file:   scrapers/scrapers.db</span>
+<div class="code"><pre><span class="nv">$ </span>git checkout -b new-layout-fixout
+<span class="nv">$ </span>git merge new-layout --no-commit --no-ff
+Automatic merge went well<span class="p">;</span> stopped before committing as requested
+<span class="nv">$ </span>git status
+<span class="c"># On branch new-layout-fixout</span>
+<span class="c"># Changes to be committed:</span>
+<span class="c">#</span>
+<span class="c">#       modified:   harga/models.py</span>
+<span class="c">#       modified:   harga/search_indexes.py</span>
+<span class="c">#       modified:   harga/templates/base.html</span>
+<span class="c">#       new file:   harga/templates/sidebar.html</span>
+<span class="c">#       new file:   scrapers/scrapers.db</span>
 </pre></div>
 
 
 <p>Let say <code>scrapers/scrapers.db</code> is the file that we accidentally committed and we don't want it. Just remove it from the index:-</p>
-<div class="code"><pre><span class="n">git</span> <span class="n">reset</span> <span class="n">HEAD</span> <span class="n">scrapers</span><span class="o">/</span><span class="n">scrapers</span><span class="p">.</span><span class="n">db</span>
+<div class="code"><pre>git reset HEAD scrapers/scrapers.db
 </pre></div>
 
 

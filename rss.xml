@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>ImportError</title><link>http://k4ml.github.io</link><description>We failed at some point in our life</description><atom:link href="http://k4ml.github.io/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sat, 04 Jul 2015 11:44:34 GMT</lastBuildDate><generator>Nikola &lt;http://getnikola.com/&gt;</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GIT: Remove files from commit</title><link>http://k4ml.github.io/posts/git-remove-files-from-commit.html</link><description>&lt;div&gt;&lt;p&gt;There are &lt;a href="http://stackoverflow.com/questions/12481639/remove-files-from-git-commit"&gt;lot of ways&lt;/a&gt; if you search for this, mostly involve in ammending the commit. But if you only accidentally added the files in a development/temporary branch, there's much simpler way than meddling around with the history.&lt;/p&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>ImportError</title><link>http://k4ml.github.io</link><description>We failed at some point in our life</description><atom:link href="http://k4ml.github.io/rss.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Sun, 05 Jul 2015 12:18:43 GMT</lastBuildDate><generator>Nikola &lt;http://getnikola.com/&gt;</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>GIT: Remove files from commit</title><link>http://k4ml.github.io/posts/git-remove-files-from-commit.html</link><description>&lt;div&gt;&lt;p&gt;There are &lt;a href="http://stackoverflow.com/questions/12481639/remove-files-from-git-commit"&gt;lot of ways&lt;/a&gt; if you search for this, mostly involve in ammending the commit. But if you only accidentally added the files in a development/temporary branch, there's much simpler way than meddling around with the history.&lt;/p&gt;
 &lt;p&gt;When you merge branch, git will automatically commit all the changes from that branch. But there's a way to &lt;a href="http://stackoverflow.com/questions/8640887/git-merge-without-auto-commit"&gt;stop that&lt;/a&gt;.&lt;/p&gt;
-&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;checkout&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;layout&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;fixout&lt;/span&gt;
-&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;merge&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;layout&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;commit&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;no&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ff&lt;/span&gt;
-&lt;span class="n"&gt;Automatic&lt;/span&gt; &lt;span class="n"&gt;merge&lt;/span&gt; &lt;span class="n"&gt;went&lt;/span&gt; &lt;span class="n"&gt;well&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;stopped&lt;/span&gt; &lt;span class="n"&gt;before&lt;/span&gt; &lt;span class="n"&gt;committing&lt;/span&gt; &lt;span class="n"&gt;as&lt;/span&gt; &lt;span class="n"&gt;requested&lt;/span&gt;
-&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;status&lt;/span&gt;
-&lt;span class="cp"&gt;# On branch new-layout-fixout&lt;/span&gt;
-&lt;span class="cp"&gt;# Changes to be committed:&lt;/span&gt;
-&lt;span class="cp"&gt;#&lt;/span&gt;
-&lt;span class="cp"&gt;#       modified:   harga/models.py&lt;/span&gt;
-&lt;span class="cp"&gt;#       modified:   harga/search_indexes.py&lt;/span&gt;
-&lt;span class="cp"&gt;#       modified:   harga/templates/base.html&lt;/span&gt;
-&lt;span class="cp"&gt;#       new file:   harga/templates/sidebar.html&lt;/span&gt;
-&lt;span class="cp"&gt;#       new file:   scrapers/scrapers.db&lt;/span&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;git checkout -b new-layout-fixout
+&lt;span class="nv"&gt;$ &lt;/span&gt;git merge new-layout --no-commit --no-ff
+Automatic merge went well&lt;span class="p"&gt;;&lt;/span&gt; stopped before committing as requested
+&lt;span class="nv"&gt;$ &lt;/span&gt;git status
+&lt;span class="c"&gt;# On branch new-layout-fixout&lt;/span&gt;
+&lt;span class="c"&gt;# Changes to be committed:&lt;/span&gt;
+&lt;span class="c"&gt;#&lt;/span&gt;
+&lt;span class="c"&gt;#       modified:   harga/models.py&lt;/span&gt;
+&lt;span class="c"&gt;#       modified:   harga/search_indexes.py&lt;/span&gt;
+&lt;span class="c"&gt;#       modified:   harga/templates/base.html&lt;/span&gt;
+&lt;span class="c"&gt;#       new file:   harga/templates/sidebar.html&lt;/span&gt;
+&lt;span class="c"&gt;#       new file:   scrapers/scrapers.db&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Let say &lt;code&gt;scrapers/scrapers.db&lt;/code&gt; is the file that we accidentally committed and we don't want it. Just remove it from the index:-&lt;/p&gt;
-&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;reset&lt;/span&gt; &lt;span class="n"&gt;HEAD&lt;/span&gt; &lt;span class="n"&gt;scrapers&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;scrapers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt;
+&lt;div class="code"&gt;&lt;pre&gt;git reset HEAD scrapers/scrapers.db
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -110,7 +110,7 @@ users exists in multiple groups, I have to repeat defining the user data.&lt;/p&
 
 
 &lt;p&gt;Had to deal with the &lt;code&gt;lookup()&lt;/code&gt; issue where it keep giving errors:-&lt;/p&gt;
-&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="nl"&gt;fatal:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;devserver&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;A&lt;/span&gt; &lt;span class="n"&gt;variable&lt;/span&gt; &lt;span class="n"&gt;inserted&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;parameter&lt;/span&gt; &lt;span class="n"&gt;into&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;module&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt; &lt;span class="n"&gt;Be&lt;/span&gt; &lt;span class="n"&gt;sure&lt;/span&gt; &lt;span class="n"&gt;to&lt;/span&gt; &lt;span class="n"&gt;quote&lt;/span&gt; &lt;span class="n"&gt;variables&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;they&lt;/span&gt; &lt;span class="n"&gt;contain&lt;/span&gt; &lt;span class="n"&gt;equal&lt;/span&gt; &lt;span class="n"&gt;signs&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;example&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s"&gt;"{{var}}"&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="x"&gt;fatal: [devserver] =&amp;gt; A variable inserted a new parameter into the module args. Be sure to quote variables if they contain equal signs (for example: "&lt;/span&gt;&lt;span class="cp"&gt;{{&lt;/span&gt;&lt;span class="nv"&gt;var&lt;/span&gt;&lt;span class="cp"&gt;}}&lt;/span&gt;&lt;span class="x"&gt;").&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -133,54 +133,7 @@ web server, either &lt;code&gt;mod_wsgi&lt;/code&gt;, &lt;code&gt;gunicorn&lt;/c
 WSGI server you can find on PyPI. I can still remember the day when there's none pure Python
 WSGI server exists (except CherryPy) and how I'd really envy Rails's community for having Mongrel.
 That day has long gone.&lt;/p&gt;
-&lt;p&gt;Let's dive to the first entry point - when you run your django application through the
-&lt;code&gt;manage.py runserver&lt;/code&gt; command. Typical django application (as generated) by the &lt;code&gt;startproject&lt;/code&gt; command
-has a file called &lt;code&gt;manage.py&lt;/code&gt; at the root of the project directory. This is the file that developer use
-to interact with their application, doing things such as running development server, synching database
-tables with the models definition, loading/exporting data and so much more.&lt;/p&gt;
-&lt;p&gt;If you peek into &lt;code&gt;manage.py&lt;/code&gt;, it's pretty simple actually:-&lt;/p&gt;
-&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="c"&gt;#!./bin/python&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
-
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;"__main__"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-    &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setdefault&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"DJANGO_SETTINGS_MODULE"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"acara.settings"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;django.core.management&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;execute_from_command_line&lt;/span&gt;
-
-    &lt;span class="n"&gt;execute_from_command_line&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;They key line here is at line 10 where a function called &lt;code&gt;execute_from_command_line()&lt;/code&gt; being called.
-From here we can traverse to module &lt;code&gt;django.core.management&lt;/code&gt; to find out what that function is doing.
-If you're sure where the actual module is located, just open the python console and import the module
-to inspect it's location:-&lt;/p&gt;
-&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="gp"&gt;$&lt;/span&gt; python
-&lt;span class="go"&gt;Python 2.7.3 (default, Aug  1 2012, 05:16:07) &lt;/span&gt;
-&lt;span class="go"&gt;[GCC 4.6.3] on linux2&lt;/span&gt;
-&lt;span class="go"&gt;Type "help", "copyright", "credits" or "license" for more information.&lt;/span&gt;
-
-&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt;&amp;gt;&amp;gt; import django.core.management
-&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt;&amp;gt;&amp;gt; django.core.management
-&lt;span class="go"&gt;&amp;lt;module 'django.core.management' from '/home../local/lib/...django/core/management/__init__.pyc'&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Now we know that module was in &lt;code&gt;$HOME/local/lib/python2.7/site-packages/django/core/management/__init__.py&lt;/code&gt;.
-This one thing I love in python. Everything is explicit. You can easily trace down where things comes from
-without even having to understand the whole framework yet. In some other framework or languages where
-implicit import is a norm, you'll have hard time tracing down where certain functions or variables comes from
-until you know the mechanism of the framework.&lt;/p&gt;
-&lt;p&gt;Let's look what inside &lt;code&gt;django.core.management&lt;/code&gt; module. The function &lt;code&gt;execute_from_command_line()&lt;/code&gt; was defined
-at the bottom of the source code. It just a wrapper to other function actually.&lt;/p&gt;
-&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;execute_from_command_line&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;"""&lt;/span&gt;
-&lt;span class="sd"&gt;    A simple method that runs a ManagementUtility.&lt;/span&gt;
-&lt;span class="sd"&gt;    """&lt;/span&gt;
-    &lt;span class="n"&gt;utility&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ManagementUtility&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;utility&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;execute&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</description><category>django</category><category>wsgi</category><category>learn</category><guid>http://k4ml.github.io/posts/django-where-does-the-application-start.html</guid><pubDate>Sat, 01 Nov 2014 08:00:14 GMT</pubDate></item><item><title>Bagaimana $_POST dan $_GET terhasil</title><link>http://k4ml.github.io/posts/bagaimana-_post-dan-_get-terhasil.html</link><description>&lt;p&gt;No translation yet, please red the Malay version.&lt;/p&gt;</description><category>php</category><guid>http://k4ml.github.io/posts/bagaimana-_post-dan-_get-terhasil.html</guid><pubDate>Mon, 31 Mar 2014 08:23:49 GMT</pubDate></item><item><title>Mini PyCon MY 2014</title><link>http://k4ml.github.io/posts/mini-pycon-my-2014.html</link><description>&lt;div&gt;&lt;p&gt;This is the first mini PyCon held in Malaysia so congratulation to the &lt;a href="http://www.pycon.my/mini-pycon-my-2014/staff"&gt;team&lt;/a&gt; that
+&lt;p class="more"&gt;&lt;a href="http://k4ml.github.io/posts/django-where-does-the-application-start.html"&gt;Read more…&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</description><category>django</category><category>wsgi</category><category>learn</category><guid>http://k4ml.github.io/posts/django-where-does-the-application-start.html</guid><pubDate>Sat, 01 Nov 2014 08:00:14 GMT</pubDate></item><item><title>Bagaimana $_POST dan $_GET terhasil</title><link>http://k4ml.github.io/posts/bagaimana-_post-dan-_get-terhasil.html</link><description>&lt;p&gt;No translation yet, please red the Malay version.&lt;/p&gt;</description><category>php</category><guid>http://k4ml.github.io/posts/bagaimana-_post-dan-_get-terhasil.html</guid><pubDate>Mon, 31 Mar 2014 08:23:49 GMT</pubDate></item><item><title>Mini PyCon MY 2014</title><link>http://k4ml.github.io/posts/mini-pycon-my-2014.html</link><description>&lt;div&gt;&lt;p&gt;This is the first mini PyCon held in Malaysia so congratulation to the &lt;a href="http://www.pycon.my/mini-pycon-my-2014/staff"&gt;team&lt;/a&gt; that
 finally make it happened. It just 1 day event filled with tracks on various topic
 related to python. Due to the space limitation, all sessions being held serially in
 a single room. Having attend a number of PyCon APAC last time in SG, I'm quite happy
@@ -357,7 +310,7 @@ also discovered few other small communities, mostly country focused while going 
 
     &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;dismiss&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'[data-dismiss="alert"]'&lt;/span&gt;
     &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;Alert&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="err"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'click'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;dismiss&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;close&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+      &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;el&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'click'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;dismiss&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;close&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="p"&gt;...&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;

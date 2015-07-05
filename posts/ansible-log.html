@@ -120,9 +120,9 @@ exception.</p>
 
 <p>Fortunately it's still installable through pip and also work inside virtualenv.<br>
 Running buildout under virtualenv still raise <code>SandboxViolationError</code> though.  Enough rant, let's get started:-</p>
-<div class="code"><pre><span class="n">virtualenv</span> <span class="n">test</span><span class="o">-</span><span class="n">ansible</span>
-<span class="n">cd</span> <span class="n">test</span><span class="o">-</span><span class="n">ansible</span>
-<span class="p">.</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">pip</span> <span class="n">install</span> <span class="n">ansible</span>
+<div class="code"><pre>virtualenv test-ansible
+cd test-ansible
+./bin/pip install ansible
 </pre></div>
 
 
@@ -162,7 +162,7 @@ set the value <a href="https://github.com/ansible/ansible/blob/devel/examples/an
 </pre></div>
 
 
-<div class="code"><pre><span class="p">.</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">ansible</span><span class="o">-</span><span class="n">playbook</span> <span class="n">main</span><span class="p">.</span><span class="n">yml</span> <span class="o">-</span><span class="n">i</span> <span class="n">ansible_hosts</span><span class="p">.</span><span class="n">ini</span> <span class="o">-</span><span class="n">u</span> <span class="n">root</span>
+<div class="code"><pre>./bin/ansible-playbook main.yml -i ansible_hosts.ini -u root
 </pre></div>
 
 

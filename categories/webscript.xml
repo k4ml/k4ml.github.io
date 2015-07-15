@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>ImportError (webscript)</title><link>http://k4ml.github.io</link><description></description><atom:link href="http://k4ml.github.io/categories/webscript.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Wed, 15 Jul 2015 13:55:54 GMT</lastBuildDate><generator>Nikola &lt;http://getnikola.com/&gt;</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Telegram bot using webscript.io</title><link>http://k4ml.github.io/posts/telegram-bot-using-webscriptio.html</link><description>&lt;div&gt;&lt;p&gt;Telegram recently released their official Bot API. It make writing bot so easy compared to building your own client using the client API.&lt;/p&gt;
+&lt;p&gt;The only requirement for your bot is that an HTTPS endpoint that you can tell TG where to forward the incoming message from user. Being an HTTPS endpoint, it mean you need to have a valid SSL cert for your domain (if you haven't got one yet).&lt;/p&gt;
+&lt;p&gt;Another option is to use free hosting that provide you with HTTPS endpoint. There are a number of them. Among others:-&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;Heroku - Provide HTTPS endpoint for .herokuapp.com&lt;/li&gt;
+&lt;li&gt;Openshift - https://yourname-appname.rhc-cloud.com/&lt;/li&gt;
+&lt;li&gt;Google App Engine - https://yourname.appsppot.com/&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;To test directly from your laptop, use service such as ngrok.com.&lt;/p&gt;
+&lt;p&gt;But in this post I want to mention another alternative that is using &lt;a href="https://www.webscript.io/"&gt;webscript.io&lt;/a&gt; script as endpoint for TG bot. After signing up to the service, just create new Lua script like below:-&lt;/p&gt;
+&lt;script src="https://gist.github.com/k4ml/502f63ed1f5a63e9b5fe.js"&gt;&lt;/script&gt;&lt;p&gt;Then you need to create your bot using &lt;a href="https://core.telegram.org/bots#botfather"&gt;BotFather&lt;/a&gt; through your Telegram app. Once you get the auth token, replace &lt;code&gt;tg_token&lt;/code&gt; variable in the script above with your auth token. Before the script can start accepting messages from Telegram, you need to tell TG using the &lt;code&gt;setWebhook&lt;/code&gt; API method. So you have to make a request to the webscript endpoint yourself like:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;curl 'https://demo-xxxx.webscript.io/script?admin_command=setURL&amp;amp;pass=xxxx'
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If there's no error, all set now. You can also check the logging that Webscript.io provide to check for any error.&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://i.imgur.com/EDayXoc.png"&gt;&lt;/p&gt;
+&lt;p&gt;The only downside of Webscript.io is that it's not free. The script created under the free account will only last for 7 days. With the same amount of money, you can get a small VPS from Digital Ocean to run the bot + some other stuff as well. But if you're not interested in maintaining another server then this is a great service. This can also be your great excuse to learn Lua ;)&lt;/p&gt;&lt;/div&gt;</description><category>lua</category><category>telegram</category><category>webscript</category><guid>http://k4ml.github.io/posts/telegram-bot-using-webscriptio.html</guid><pubDate>Wed, 15 Jul 2015 04:28:01 GMT</pubDate></item></channel></rss>

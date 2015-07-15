@@ -1,0 +1,212 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Building Telegram bot using webscript.io service in Lua programming language."><meta name="author" content="Mohd Kamal Bin Mustafa"><title>Telegram bot using webscript.io | ImportError</title><link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../assets/css/rst.css" rel="stylesheet" type="text/css"><link href="../assets/css/code.css" rel="stylesheet" type="text/css"><link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css"><link href="../assets/css/theme.css" rel="stylesheet" type="text/css"><link href="../assets/css/custom.css" rel="stylesheet" type="text/css"><link rel="canonical" href="http://k4ml.github.io/posts/telegram-bot-using-webscriptio.html"><!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]--><link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../rss.xml"><link rel="alternate" type="application/rss+xml" title="RSS (ms)" href="../ms/rss.xml"><!-- Open Graph Meta Tags BEGIN --><meta content=" Telegram bot using webscript.io " property="og:title"><meta content="ImportError" property="og:site_name"><meta content="http://k4ml.github.io/posts/telegram-bot-using-webscriptio.html" property="og:url"><meta content="Building Telegram bot using webscript.io service in Lua programming language." property="og:description"><meta content="article" property="og:type"><meta property="article:author" content="https://www.facebook.com/k4mlm"><meta content="http://i.imgur.com/r0ao0RJ.png" property="og:image"><!-- Open Graph Meta Tags END --></head><body>
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"><div class="container-fluid"><!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://k4ml.github.io">ImportError</a>
+        </div><!-- /.navbar-header -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav"><li><a href="../archive.html">Archives</a>
+            
+        
+    
+        
+            
+                </li><li><a href="../projects.html">Projects</a>
+            
+        
+    
+        
+            
+                </li><li><a href="../categories/index.html">Tags</a>
+            
+        
+    
+        
+            
+                </li><li><a href="../rss.xml">RSS</a>
+            
+        
+    
+
+            </li></ul><ul class="nav navbar-nav navbar-right"><li>
+    
+        
+    
+        
+            </li><li><a href="../ms/index.html" rel="alternate" hreflang="ms">Malay</a></li>
+        
+    
+
+                
+                
+                
+                    
+
+    <li>
+    <a href="telegram-bot-using-webscriptio.md" id="sourcelink">Source</a>
+    </li>
+
+
+                
+            </ul></div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav><!-- End of Menubar --><div class="container">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            <div class="col-md-8 col-md-push-4">
+            
+    <article class="postbox post-text"><div class="h-entry" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
+    <h1 class="p-name" itemprop="headline name">Telegram bot using webscript.io</h1>
+    
+
+    <hr><small>
+        Posted: <time class="published dt-published" datetime="2015-07-15T12:28:01+08:00" itemprop="datePublished">2015-07-15 12:28</time>
+        
+    
+        
+            
+        
+            
+        
+    
+
+        
+    
+          |  More posts about
+        
+            <a class="tag" href="../categories/lua.html"><span class="badge badge-info">lua</span></a>
+        
+            <a class="tag" href="../categories/telegram.html"><span class="badge badge-info">telegram</span></a>
+        
+            <a class="tag" href="../categories/webscript.html"><span class="badge badge-info">webscript</span></a>
+        
+    
+
+    </small>
+    <hr><div class="e-content" itemprop="articleBody text">
+    <div><p>Telegram recently released their official Bot API. It make writing bot so easy compared to building your own client using the client API.</p>
+<p>The only requirement for your bot is that an HTTPS endpoint that you can tell TG where to forward the incoming message from user. Being an HTTPS endpoint, it mean you need to have a valid SSL cert for your domain (if you haven't got one yet).</p>
+<p>Another option is to use free hosting that provide you with HTTPS endpoint. There are a number of them. Among others:-</p>
+<ul><li>Heroku - Provide HTTPS endpoint for .herokuapp.com</li>
+<li>Openshift - https://yourname-appname.rhc-cloud.com/</li>
+<li>Google App Engine - https://yourname.appsppot.com/</li>
+</ul><p>To test directly from your laptop, use service such as ngrok.com.</p>
+<p>But in this post I want to mention another alternative that is using <a href="https://www.webscript.io/">webscript.io</a> script as endpoint for TG bot. After signing up to the service, just create new Lua script like below:-</p>
+<script src="https://gist.github.com/k4ml/502f63ed1f5a63e9b5fe.js"></script><p>Then you need to create your bot using <a href="https://core.telegram.org/bots#botfather">BotFather</a> through your Telegram app. Once you get the auth token, replace <code>tg_token</code> variable in the script above with your auth token. Before the script can start accepting messages from Telegram, you need to tell TG using the <code>setWebhook</code> API method. So you have to make a request to the webscript endpoint yourself like:-</p>
+<div class="code"><pre>curl 'https://demo-xxxx.webscript.io/script?admin_command=setURL&amp;pass=xxxx'
+</pre></div>
+
+
+<p>If there's no error, all set now. You can also check the logging that Webscript.io provide to check for any error.</p>
+<p><img src="http://i.imgur.com/EDayXoc.png"></p>
+<p>The only downside of Webscript.io is that it's not free. The script created under the free account will only last for 7 days. With the same amount of money, you can get a small VPS from Digital Ocean to run the bot + some other stuff as well. But if you're not interested in maintaining another server then this is a great service. This can also be your great excuse to learn Lua ;)</p></div>
+    </div>
+    
+        <meta content="Building Telegram bot using webscript.io service in Lua programming language." itemprop="description"></div>
+    
+    
+        <ul class="pager"><li class="previous">
+                <a href="git-remove-files-from-commit.html" rel="prev">← Previous post</a>
+            </li>
+        
+        
+        </ul><div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="importerror",
+        
+            disqus_url="http://k4ml.github.io/posts/telegram-bot-using-webscriptio.html",
+        
+        disqus_title="Telegram bot using webscript.io",
+        disqus_identifier="cache/posts/telegram-bot-using-webscriptio.html",
+        disqus_config = function () {
+            this.language = "";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+
+    
+
+    
+    
+    
+
+    </article></div>
+            <div class="col-md-4 col-md-pull-8">
+                <div class="panel panel-default"></div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h3 class="panel-title">About me</h3></div>
+                    <div class="panel-body">
+                        <p><img src="../images/me-small.jpg" style="float: right; width: 130px; height: 131px;">
+Web developer in Malaysia. Currently work at <a href="http://www.marimore.co.jp/">MARIMORE Inc</a> building internet 
+services using Python and Django web framework.</p>
+<p><code>ImportError</code> is an error message emitted by Python when it failed to load certain
+module as requested by programmer. It's a very common error when someone new to
+the language trying it out. This website on the same theme, will try provide help
+for newcomers on any technologies to overcome their first hurdle.</p>
+<div class="well well-sm">
+Try most of the examples you may find here on Digital Ocean cloud service. They provide
+excellent VPS at a very cheaper price. Using this <a href="https://www.digitalocean.com/?refcode=631fbc1bf714">referral link</a>
+you'll get USD10 credits upon sign up. That's enough to run single VPS with 1GB RAM for a month.
+</div>
+
+<h3>Others</h3>
+<p>I can also be found at the following sites:-</p>
+<ul><li>http://k4ml.blogspot.com/</li>
+<li>http://k4ml.github.io/</li>
+<li>http://metak4ml.blogspot.com/</li>
+<li>http://www.mydev.my/</li>
+<li>http://github.com/k4ml/</li>
+</ul><h3>Disclaimers</h3>
+<p>The postings on this site are my own and don't necessarily represent my employer's
+positions, strategies or opinions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End of body content-->
+
+        <footer>
+            Contents © 2015         <a href="mailto:joe@demo.site">Mohd Kamal Bin Mustafa</a> - Powered by         <a href="http://getnikola.com">Nikola</a>         
+        </footer></div>
+</div>
+
+
+    
+        
+            <script src="../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script><script src="../assets/js/bootstrap.min.js" type="text/javascript"></script><script src="../assets/js/jquery.colorbox-min.js" type="text/javascript"></script><!-- Social buttons --><div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
+<a class="addthis_button_more">Share</a>
+<ul><li><a class="addthis_button_facebook"></a>
+</li><li><a class="addthis_button_google_plusone_share"></a>
+</li><li><a class="addthis_button_linkedin"></a>
+</li><li><a class="addthis_button_twitter"></a>
+</li></ul></div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script><!-- End of social buttons --><script type="text/javascript">jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-44689253-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script></body></html>

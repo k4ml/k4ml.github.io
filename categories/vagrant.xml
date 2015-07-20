@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel><title>ImportError (vagrant)</title><link>http://k4ml.github.io</link><description></description><atom:link href="http://k4ml.github.io/categories/vagrant.xml" type="application/rss+xml" rel="self"></atom:link><language>en</language><lastBuildDate>Mon, 20 Jul 2015 16:21:53 GMT</lastBuildDate><generator>Nikola &lt;http://getnikola.com/&gt;</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Pengenalan Vagrant</title><link>http://k4ml.github.io/posts/pengenalan-vagrant.html</link><description>&lt;div&gt;&lt;p&gt;Tools untuk membina &lt;em&gt;virtual machine&lt;/em&gt; dengan cepat. &lt;em&gt;Virtual Machine&lt;/em&gt; yang 
+dibina adalah berasaskan VirtualBox. VirtualBox adalah sebuah mesin maya, 
+seperti komputer fizikal atau laptop yang anda biasa guna. Anda boleh membina 
+sejumlah mesin maya dan memasang pelbagai jenis OS seperti Ubuntu Linux, 
+Windown 7 dan sebagainya.&lt;/p&gt;
+&lt;h3 id="kenapa-guna-virtual-machine"&gt;Kenapa guna &lt;em&gt;Virtual Machine&lt;/em&gt; ?&lt;/h3&gt;
+&lt;p&gt;Developer biasanya melakukan kerja-kerja pembangunan di komputer desktop atau 
+laptop masing-masing. Setelah siap, aplikasi tersebut akan di'deploy' ke server 
+khas yang akan dicapai oleh pengguna sistem tersebut. Ini adalah senario 
+tipikal dalam pembangunan laman web atau aplikasi web. Konfigurasi desktop atau 
+laptop yang digunakan untuk &lt;em&gt;development&lt;/em&gt; biasanya berbeza dengan server yang 
+digunakan untuk &lt;em&gt;deployment&lt;/em&gt;. Ini menyebabkan pelbagai isu yang tidak timbul 
+semasa proses &lt;em&gt;development&lt;/em&gt; atau &lt;em&gt;testing&lt;/em&gt; muncul apabila ia cuba dijalankan di 
+server. Keadaan ini amat membazirkan masa dan antara sebab &lt;em&gt;release&lt;/em&gt; sesuatu 
+sistem terpaksa dilengahkan. &lt;/p&gt;
+&lt;p&gt;Mengunakan &lt;em&gt;virtual machine&lt;/em&gt;, &lt;em&gt;developer&lt;/em&gt; dapat membina server yang sama 
+konfigurasi dengan server sebenar dalam masa yang singkat. Ini membolehkan 
+mereka menguji aplikasi yang dibangunkan dalam persekitaran sebenar. &lt;em&gt;Virtual 
+Machine&lt;/em&gt; yang dibina itu juga boleh dikongsi dengan &lt;em&gt;developer&lt;/em&gt; lain menjadikan 
+proses testing dalam sesuatu &lt;em&gt;development team&lt;/em&gt; semakin pantas dan tidak 
+membebankan.&lt;/p&gt;
+&lt;h3 id="install"&gt;Install&lt;/h3&gt;
+&lt;p&gt;Ada beberapa pilihan bergantung OS yang anda gunakan seperti msi installer 
+untuk Windows, package .deb untuk Debian/Ubuntu dan .dmg untuk pengguna MacOS.&lt;/p&gt;
+&lt;p&gt;...&lt;/p&gt;
+&lt;h3 id="contoh-penggunaan-use-case"&gt;Contoh Penggunaan (Use case)&lt;/h3&gt;
+&lt;p&gt;Saya hendak membina sebuah &lt;em&gt;base machine&lt;/em&gt; dengan kriteria berikut:-&lt;/p&gt;
+&lt;ul&gt;&lt;li&gt;Menggunakan OS Ubuntu Precise 32bit.&lt;/li&gt;
+&lt;li&gt;Semua package dikemaskini ke versi paling terkini.&lt;/li&gt;
+&lt;li&gt;Package seperti postgresql, mysql dan apache2 telah siap di'install'.&lt;/li&gt;
+&lt;/ul&gt;&lt;p&gt;Bina machine pertama:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="go"&gt;vagrant box add precise32 http://files.vagrantup.com/precise32.box&lt;/span&gt;
+&lt;span class="go"&gt;vagrant init precise32&lt;/span&gt;
+&lt;span class="go"&gt;vagrant up&lt;/span&gt;
+&lt;span class="go"&gt;vagrant ssh&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Kini anda sudah berada dalam machine precise32. Update Ubuntu:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="go"&gt;sudo apt-get update&lt;/span&gt;
+&lt;span class="go"&gt;sudo apt-get upgrade&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Install package yang dikehendaki:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="go"&gt;sudo apt-get build-essential apache2 postgresql mysql-server&lt;/span&gt;
+&lt;span class="go"&gt;exit&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Kini anda berada dalam mesin sebenar (fizikal). Kita akan buat copy
+untuk mesin yang pertama. Buat satu file konfigurasi asas untuk mesin yang
+kita nak pakejkan ini. Simpan sebagai Vagrantfile.pkg:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="no"&gt;Vagrant&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+    &lt;span class="c1"&gt;# Forward apache&lt;/span&gt;
+    &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;forward_port&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8080&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Dalam konfigurasi di atas kita membuat &lt;em&gt;port forwarding&lt;/em&gt; dari port 8080 di
+mesin fizikal ke port 80 di mesin maya yang bakal kita bina. Ini membolehkan
+kita akses apache di mesin maya menggunakan url seperti http://localhost:8080/
+daripada laptop atau desktop kita (mesin fizikal). Arahan berikutnya akan
+melaksanakan proses &lt;em&gt;packaging&lt;/em&gt;.&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="go"&gt;vagrant package --vagrantfile Vagrantfile.pkg&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Setelah siap, anda akan dapati satu fail bernama &lt;code&gt;package.box&lt;/code&gt;. Fail ini boleh
+dikongsikan dengan rakan-rakan yang lain dan mereka akan mendapat sebuah mesin
+maya berasaskan Ubuntu Precise 32bit yang telah siap dipasang dengan apache2,
+mysql dan postgresql.&lt;/p&gt;
+&lt;p&gt;Untuk mula menggunakan box yang baru kita hasilkan tadi, gunakan arahan berikut:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="go"&gt;vagrant box add precise32-base package.box&lt;/span&gt;
+&lt;span class="go"&gt;vagrant box list&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Anda akan mendapat output seperti berikut:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="go"&gt;lucid32&lt;/span&gt;
+&lt;span class="go"&gt;precise32-base&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Bina virtual machine baru berasaskan &lt;code&gt;precise32-base&lt;/code&gt;:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="go"&gt;vagrant init precise32-base&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Anda akan mendapat output seperti berikut:-&lt;/p&gt;
+&lt;div class="code"&gt;&lt;pre&gt;&lt;span class="go"&gt;    A `Vagrantfile` has been placed in this directory. You are now&lt;/span&gt;
+&lt;span class="go"&gt;    ready to `vagrant up` your first virtual environment! Please read&lt;/span&gt;
+&lt;span class="go"&gt;    the comments in the Vagrantfile as well as documentation on&lt;/span&gt;
+&lt;span class="go"&gt;    `vagrantup.com` for more information on using Vagrant.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="rujukan"&gt;Rujukan&lt;/h3&gt;
+&lt;p&gt;http://vagrantup.com/&lt;/p&gt;&lt;/div&gt;</description><category>devops</category><category>vagrant</category><guid>http://k4ml.github.io/posts/pengenalan-vagrant.html</guid><pubDate>Sun, 29 Sep 2013 14:43:02 GMT</pubDate></item></channel></rss>

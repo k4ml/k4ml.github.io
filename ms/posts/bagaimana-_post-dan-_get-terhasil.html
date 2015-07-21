@@ -99,18 +99,18 @@ mengandungi data daripada <em>url query string</em> manakala <code>$_POST</code>
 melalui html form. Tapi bagaimanakah data ini terhasil ?</p>
 <p>Data untuk <code>$_GET</code> dan <code>$_POST</code> kedua-duanya dihasilkan dengan memproses HTTP request yang dihantar
 oleh client. Secara ringkas, HTTP request adalah dalam bentuk teks dengan format seperti berikut:-</p>
-<div class="code"><pre><span class="nf">GET</span> <span class="nn">/index.php?action=list&amp;module=user</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Content-Type</span><span class="o">:</span> <span class="l">text/html</span>
-<span class="na">User-Agent</span><span class="o">:</span> <span class="l">Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.</span>
+<div class="code"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">php</span><span class="o">?</span><span class="n">action</span><span class="o">=</span><span class="n">list</span><span class="o">&amp;</span><span class="n">module</span><span class="o">=</span><span class="n">user</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span> <span class="n">text</span><span class="o">/</span><span class="n">html</span>
+<span class="n">User</span><span class="o">-</span><span class="n">Agent</span><span class="o">:</span> <span class="n">Mozilla</span><span class="o">/</span><span class="mf">5.0</span> <span class="p">(</span><span class="n">X11</span><span class="p">;</span> <span class="n">Linux</span> <span class="n">i686</span><span class="p">)</span> <span class="n">AppleWebKit</span><span class="o">/</span><span class="mf">537.17</span> <span class="p">(</span><span class="n">KHTML</span><span class="p">,</span> <span class="n">like</span> <span class="n">Gecko</span><span class="p">)</span> <span class="n">Chrome</span><span class="o">/</span><span class="mf">24.0</span><span class="p">.</span>
 </pre></div>
 
 
 <p>Atau:-</p>
-<div class="code"><pre><span class="nf">POST</span> <span class="nn">/index.php</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-urlencoded</span>
-<span class="na">User-Agent</span><span class="o">:</span> <span class="l">Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.</span>
+<div class="code"><pre><span class="n">POST</span> <span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">php</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span> <span class="n">application</span><span class="o">/</span><span class="n">x</span><span class="o">-</span><span class="n">www</span><span class="o">-</span><span class="n">urlencoded</span>
+<span class="n">User</span><span class="o">-</span><span class="n">Agent</span><span class="o">:</span> <span class="n">Mozilla</span><span class="o">/</span><span class="mf">5.0</span> <span class="p">(</span><span class="n">X11</span><span class="p">;</span> <span class="n">Linux</span> <span class="n">i686</span><span class="p">)</span> <span class="n">AppleWebKit</span><span class="o">/</span><span class="mf">537.17</span> <span class="p">(</span><span class="n">KHTML</span><span class="p">,</span> <span class="n">like</span> <span class="n">Gecko</span><span class="p">)</span> <span class="n">Chrome</span><span class="o">/</span><span class="mf">24.0</span><span class="p">.</span>
 
-username=kamal&amp;address=jb
+<span class="n">username</span><span class="o">=</span><span class="n">kamal</span><span class="o">&amp;</span><span class="n">address</span><span class="o">=</span><span class="n">jb</span>
 </pre></div>
 
 
@@ -142,11 +142,11 @@ superglobal <code>$_POST</code>. Ini mungkin kerana browser hanya terhad untuk m
 
 
 <p>Jika request kita adalah seperti berikut:-</p>
-<div class="code"><pre><span class="nf">POST</span> <span class="nn">/index.php</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
-<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
-<span class="na">User-Agent</span><span class="o">:</span> <span class="l">Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.</span>
+<div class="code"><pre><span class="n">POST</span> <span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">php</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="o">:</span> <span class="n">application</span><span class="o">/</span><span class="n">json</span>
+<span class="n">User</span><span class="o">-</span><span class="n">Agent</span><span class="o">:</span> <span class="n">Mozilla</span><span class="o">/</span><span class="mf">5.0</span> <span class="p">(</span><span class="n">X11</span><span class="p">;</span> <span class="n">Linux</span> <span class="n">i686</span><span class="p">)</span> <span class="n">AppleWebKit</span><span class="o">/</span><span class="mf">537.17</span> <span class="p">(</span><span class="n">KHTML</span><span class="p">,</span> <span class="n">like</span> <span class="n">Gecko</span><span class="p">)</span> <span class="n">Chrome</span><span class="o">/</span><span class="mf">24.0</span><span class="p">.</span>
 
-<span class="p">{</span><span class="nt">"username"</span><span class="p">:</span> <span class="s2">"kamal"</span><span class="p">,</span> <span class="nt">"address"</span><span class="p">:</span> <span class="s2">"jb"</span><span class="p">}</span>
+<span class="p">{</span><span class="s">"username"</span><span class="o">:</span> <span class="s">"kamal"</span><span class="p">,</span> <span class="s">"address"</span><span class="o">:</span> <span class="s">"jb"</span><span class="p">}</span>
 </pre></div>
 
 

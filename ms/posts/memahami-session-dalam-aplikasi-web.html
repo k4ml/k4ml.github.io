@@ -131,7 +131,7 @@
     <span class="p">}</span>
     <span class="k">else</span> <span class="p">{</span>
         <span class="nv">$mysessid</span> <span class="o">=</span> <span class="nb">uniqid</span><span class="p">(</span><span class="s1">'MYSESSID'</span><span class="p">);</span>
-        <span class="nb">setcookie</span><span class="p">(</span><span class="s1">'mysessid'</span><span class="p">,</span> <span class="nv">$mysessid</span><span class="p">);</span>
+        <span class="nx">setcookie</span><span class="p">(</span><span class="s1">'mysessid'</span><span class="p">,</span> <span class="nv">$mysessid</span><span class="p">);</span>
         <span class="nv">$GLOBALS</span><span class="p">[</span><span class="s1">'_MYSESSION'</span><span class="p">]</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
     <span class="p">}</span>
     <span class="nv">$GLOBALS</span><span class="p">[</span><span class="s1">'_MYSESSID'</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$mysessid</span><span class="p">;</span>

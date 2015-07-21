@@ -99,13 +99,13 @@
 out the root repository will give us the whole repo with all the branches and 
 tags. For a big repository, this will take sometime. To do shallow checkout, 
 subversion provide the <code>--depth</code> <a href="http://svnbook.red-bean.com/en/1.6/svn.advanced.sparsedirs.html">options</a> to the checkout command.</p>
-<div class="code"><pre>svn co --depth immediates https://server.com/path/to/repo
-ls repo
-branches tags trunk
-# at this point all directories are empty
-svn up branches/155-new-dashboard
-cd trunk
-svn up --set-depth infinity
+<div class="code"><pre><span class="n">svn</span> <span class="n">co</span> <span class="o">--</span><span class="n">depth</span> <span class="n">immediates</span> <span class="n">https</span><span class="o">:</span><span class="c1">//server.com/path/to/repo</span>
+<span class="n">ls</span> <span class="n">repo</span>
+<span class="n">branches</span> <span class="n">tags</span> <span class="n">trunk</span>
+<span class="cp"># at this point all directories are empty</span>
+<span class="n">svn</span> <span class="n">up</span> <span class="n">branches</span><span class="o">/</span><span class="mi">155</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">dashboard</span>
+<span class="n">cd</span> <span class="n">trunk</span>
+<span class="n">svn</span> <span class="n">up</span> <span class="o">--</span><span class="n">set</span><span class="o">-</span><span class="n">depth</span> <span class="n">infinity</span>
 </pre></div>
 
 

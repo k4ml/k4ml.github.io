@@ -102,18 +102,18 @@
 <p>There are a lot of tutorials out there on Django and the official documentation also has one. For this post, I decided not to go through the typical route on how to get started with django. Let's 'ignore' the best practices and focus on what actually work and hopefully we can learn something along the way. So let's get started by downloading Django itself from the website.</p>
 <!-- TEASER_END -->
 
-<div class="code"><pre><span class="gp">$</span> wget -o django.tar.gz https://www.djangoproject.com/download/1.5.1/tarball/
+<div class="code"><pre><span class="gp">$</span> wget -O django.tar.gz https://www.djangoproject.com/download/1.8.3/tarball/
 <span class="gp">$</span> tar xzf django.tar.gz 
 <span class="gp">$</span> ls
-<span class="go">Django-1.5.1  django.tar.gz</span>
-<span class="gp">$</span> ls Django-1.5.1/
+<span class="go">Django-1.8.3  django.tar.gz</span>
+<span class="gp">$</span> ls Django-1.8.3/
 <span class="go">AUTHORS  docs    INSTALL  MANIFEST.in  README.rst  setup.cfg  tests</span>
 <span class="go">django   extras  LICENSE  PKG-INFO     scripts     setup.py</span>
 </pre></div>
 
 
 <p>What we're getting is called a Python package that supposed to be installed. But we're not going to install it, instead let just take what we really need. Take out the <code>django</code> directory and move to our current directory.</p>
-<div class="code"><pre><span class="gp">$</span> mv Django-1.5.1/django .
+<div class="code"><pre><span class="gp">$</span> mv Django-1.8.3/django .
 </pre></div>
 
 
@@ -158,7 +158,7 @@
 
 
 <p>You'll get a message like this:-</p>
-<div class="code"><pre><span class="n">ImproperlyConfigured</span><span class="o">:</span> <span class="n">Requested</span> <span class="n">setting</span> <span class="n">USE_I18N</span><span class="o">,</span> <span class="n">but</span> <span class="n">settings</span> <span class="n">are</span> <span class="n">not</span> <span class="n">configured</span><span class="o">.</span> <span class="n">You</span> <span class="n">must</span> <span class="n">either</span> <span class="n">define</span> <span class="n">the</span> <span class="n">environment</span> <span class="n">variable</span> <span class="n">DJANGO_SETTINGS_MODULE</span> <span class="n">or</span> <span class="n">call</span> <span class="n">settings</span><span class="o">.</span><span class="na">configure</span><span class="o">()</span> <span class="n">before</span> <span class="n">accessing</span> <span class="n">settings</span><span class="o">.</span>
+<div class="code"><pre>django.core.exceptions.ImproperlyConfigured: Requested setting DEFAULT_INDEX_TABLESPACE, but settings are not configured. You must either define the environment variable DJANGO_SETTINGS_MODULE or call settings.configure() before accessing settings.
 </pre></div>
 
 
@@ -201,13 +201,32 @@
 
 
 <p>Run <code>runserver</code> again:-</p>
-<div class="code"><pre><span class="gp">$</span> python main.py runserver
-<span class="go">Validating models...</span>
+<p>You'll get this error:-</p>
+<div class="code"><pre><span class="n">CommandError</span><span class="o">:</span> <span class="n">You</span> <span class="n">must</span> <span class="kd">set</span> <span class="n">settings</span><span class="o">.</span><span class="na">ALLOWED_HOSTS</span> <span class="k">if</span> <span class="n">DEBUG</span> <span class="k">is</span> <span class="n">False</span><span class="o">.</span>
+</pre></div>
 
-<span class="go">0 errors found</span>
-<span class="go">April 11, 2013 - 16:34:29</span>
-<span class="go">Django version 1.5.1, using settings 'settings'</span>
-<span class="go">Development server is running at http://127.0.0.1:8000/</span>
+
+<p>So add this another settings:-</p>
+<div class="code"><pre><span class="gp">$</span> cat settings.py
+<span class="go">SECRET_KEY = "1+)O49,&gt;}5!$+ 43*PN+2+=(2S'W*0^1_|76n{_"</span>
+<span class="go">DEBUG = True</span>
+</pre></div>
+
+
+<p>The error above mentioned something called <code>ALLOWED_HOSTS</code> but let's ignore that for now. It's a settings for production so it's not applicable yet in our case. We'll revisit that once we want to deploy our app to production server. Let's run the app again:-</p>
+<div class="code"><pre><span class="gp">$</span> python main.py runserver
+<span class="go">Performing system checks...</span>
+
+<span class="go">System check identified some issues:</span>
+
+<span class="go">WARNINGS:</span>
+<span class="go">?: (1_7.W001) MIDDLEWARE_CLASSES is not set.</span>
+<span class="go">        HINT: Django 1.7 changed the global defaults for the MIDDLEWARE_CLASSES. django.contrib.sessions.middleware.SessionMiddleware, django.contrib.auth.middleware.AuthenticationMiddleware, and django.contrib.messages.middleware.MessageMiddleware were removed from the defaults. If your project needs these middleware then you should configure this setting.</span>
+
+<span class="go">System check identified 1 issue (0 silenced).</span>
+<span class="go">July 21, 2015 - 14:55:21</span>
+<span class="go">Django version 1.8.3, using settings 'settings'</span>
+<span class="go">Starting development server at http://127.0.0.1:8000/</span>
 <span class="go">Quit the server with CONTROL-C.</span>
 </pre></div>
 
@@ -257,14 +276,6 @@
 
 <p>On another console:-</p>
 <div class="code"><pre><span class="gp">$</span> curl http://localhost:8000/
-</pre></div>
-
-
-<p>Unfortunately django still come up with 500 error. This is because django refuse to run our function through the development server with DEBUG settings set to False. This is to avoid you from running this crippled web server for production application. You should use Apache with <code>mod_wsgi</code> or any other production ready wsgi server out there. So let's fix the settings:-</p>
-<div class="code"><pre><span class="gp">$</span> cat settings.py
-<span class="go">SECRET_KEY = "1+)O49,&gt;}5!$+ 43*PN+2+=(2S'W*0^1_|76n{_"</span>
-<span class="go">ROOT_URLCONF = 'urls'</span>
-<span class="go">DEBUG = True</span>
 </pre></div>
 
 

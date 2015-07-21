@@ -128,15 +128,15 @@ other protocol that involved moving the bits over the wire but we're not going t
 <p>As mentioned before, HTTP is a text protocol so when two computers (a client and a server) need to
 communicate they will just sent a bunch of text as outlined by the protocol. So a client may send
 the following to server:-</p>
-<div class="code"><pre><span class="nf">GET</span> <span class="nn">/index.html</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="code"><pre><span class="n">GET</span> <span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">html</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
 </pre></div>
 
 
 <p>Above is just a plain text that will be sent by client to a socket on the server, and the server
 on the other hand is required to return a response which also a plain text that may look like below:-</p>
-<div class="code"><pre>HTTP/1.1 200 OK
+<div class="code"><pre><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="n">OK</span>
 
-Hello world
+<span class="n">Hello</span> <span class="n">world</span>
 </pre></div>
 
 
@@ -144,28 +144,28 @@ Hello world
 tools that can open a socket connection and let us send some text through it will do. So guess what tools
 that most computers already have ? The <code>telnet</code>. Let's try to talk to a Google HTTP server and see what
 we'll get:-</p>
-<div class="code"><pre><span class="nv">$ </span>telnet www.google.com 80
-Trying 173.194.126.80...
-Connected to www.google.com.
-Escape character is <span class="s1">'^]'</span>.
-GET /index.html HTTP/1.1
+<div class="code"><pre><span class="err">$</span> <span class="nx">telnet</span> <span class="nx">www.google.com</span> <span class="mi">80</span>
+<span class="nx">Trying</span> <span class="mf">173.194.126.80</span><span class="nx">...</span>
+<span class="nx">Connected</span> <span class="k">to</span> <span class="nx">www.google.com.</span>
+<span class="nx">Escape</span> <span class="nx">character</span> <span class="nx">is</span> <span class="s1">'^]'</span><span class="nx">.</span>
+<span class="nb">GET</span> <span class="p">/</span><span class="nx">index.html</span> <span class="nx">HTTP</span><span class="p">/</span><span class="nx">1.1</span>
 
-HTTP/1.1 <span class="m">200</span> OK
-Date: Mon, <span class="m">03</span> Mar <span class="m">2014</span> 15:19:22 GMT
-Expires: -1
-Cache-Control: private, max-age<span class="o">=</span>0
-Content-Type: text/html<span class="p">;</span> <span class="nv">charset</span><span class="o">=</span>ISO-8859-1
-Set-Cookie: <span class="nv">PREF</span><span class="o">=</span><span class="nv">ID</span><span class="o">=</span>9862b6886e93da12:FF<span class="o">=</span>0:TM<span class="o">=</span>1393859962:LM<span class="o">=</span>1393859962:S<span class="o">=</span>Vlib8XNFMPHru-3K<span class="p">;</span> <span class="nv">expires</span><span class="o">=</span>Wed, 02-Mar-2016 15:19:22 GMT<span class="p">;</span> <span class="nv">path</span><span class="o">=</span>/<span class="p">;</span> <span class="nv">domain</span><span class="o">=</span>.google.com
-Set-Cookie: <span class="nv">NID</span><span class="o">=</span><span class="nv">67</span><span class="o">=</span>cC38fiwjW6qW5bcRzZuAAHmjY2qAwgPEM5m0QL3LuSoa_gtgzHgogLmZISsEovpLDRVLL4KcdhWXO-SmT6UJUfEJ3V6yn0xmp8XcLJfEFUJ92COvGcnxgi3oYHXZcguq<span class="p">;</span> <span class="nv">expires</span><span class="o">=</span>Tue, 02-Sep-2014 15:19:22 GMT<span class="p">;</span> <span class="nv">path</span><span class="o">=</span>/<span class="p">;</span> <span class="nv">domain</span><span class="o">=</span>.google.com<span class="p">;</span> HttpOnly
-P3P: <span class="nv">CP</span><span class="o">=</span><span class="s2">"This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&amp;answer=151657 for more info."</span>
-Server: gws
-X-XSS-Protection: 1<span class="p">;</span> <span class="nv">mode</span><span class="o">=</span>block
-X-Frame-Options: SAMEORIGIN
-Alternate-Protocol: 80:quic
-Transfer-Encoding: chunked
+<span class="nx">HTTP</span><span class="p">/</span><span class="nx">1.1</span> <span class="mi">200</span> <span class="nx">OK</span>
+<span class="kt">Date</span><span class="p">:</span> <span class="nx">Mon</span><span class="p">,</span> <span class="mi">03</span> <span class="nx">Mar</span> <span class="mi">2014</span> <span class="mi">15</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">22</span> <span class="nb">GMT</span>
+<span class="nx">Expires</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span>
+<span class="k">Cache</span><span class="na">-Control</span><span class="p">:</span> <span class="k">private</span><span class="p">,</span> <span class="k">max</span><span class="na">-age</span><span class="o">=</span><span class="mi">0</span>
+<span class="nb">Content</span><span class="na">-Type</span><span class="p">:</span> <span class="nx">text</span><span class="p">/</span><span class="nx">html</span><span class="p">;</span> <span class="n">charset</span><span class="o">=</span><span class="nx">ISO</span><span class="o">-</span><span class="mi">8859</span><span class="o">-</span><span class="mi">1</span>
+<span class="nb">Set</span><span class="na">-Cookie</span><span class="p">:</span> <span class="n">PREF</span><span class="o">=</span><span class="n">ID</span><span class="o">=</span><span class="mi">9862</span><span class="nx">b6886e93da12</span><span class="p">:</span><span class="n">FF</span><span class="o">=</span><span class="mi">0</span><span class="p">:</span><span class="n">TM</span><span class="o">=</span><span class="mi">1393859962</span><span class="p">:</span><span class="n">LM</span><span class="o">=</span><span class="mi">1393859962</span><span class="p">:</span><span class="n">S</span><span class="o">=</span><span class="nx">Vlib8XNFMPHru</span><span class="o">-</span><span class="mi">3</span><span class="nx">K</span><span class="p">;</span> <span class="n">expires</span><span class="o">=</span><span class="nx">Wed</span><span class="p">,</span> <span class="mi">02</span><span class="na">-Mar</span><span class="o">-</span><span class="mi">2016</span> <span class="mi">15</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">22</span> <span class="nb">GMT</span><span class="p">;</span> <span class="n">path</span><span class="o">=/</span><span class="p">;</span> <span class="n">domain</span><span class="o">=</span><span class="bp">.</span><span class="nx">google.com</span>
+<span class="nb">Set</span><span class="na">-Cookie</span><span class="p">:</span> <span class="n">NID</span><span class="o">=</span><span class="mi">67</span><span class="o">=</span><span class="nx">cC38fiwjW6qW5bcRzZuAAHmjY2qAwgPEM5m0QL3LuSoa_gtgzHgogLmZISsEovpLDRVLL4KcdhWXO</span><span class="na">-SmT6UJUfEJ3V6yn0xmp8XcLJfEFUJ92COvGcnxgi3oYHXZcguq</span><span class="p">;</span> <span class="n">expires</span><span class="o">=</span><span class="nx">Tue</span><span class="p">,</span> <span class="mi">02</span><span class="na">-Sep</span><span class="o">-</span><span class="mi">2014</span> <span class="mi">15</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">22</span> <span class="nb">GMT</span><span class="p">;</span> <span class="n">path</span><span class="o">=/</span><span class="p">;</span> <span class="n">domain</span><span class="o">=</span><span class="bp">.</span><span class="nx">google.com</span><span class="p">;</span> <span class="nx">HttpOnly</span>
+<span class="nx">P3P</span><span class="p">:</span> <span class="n">CP</span><span class="o">=</span><span class="s2">"This is not a P3P policy! See http://www.google.com/support/accounts/bin/answer.py?hl=en&amp;answer=151657 for more info."</span>
+<span class="nx">Server</span><span class="p">:</span> <span class="nx">gws</span>
+<span class="nx">X</span><span class="na">-XSS-Protection</span><span class="p">:</span> <span class="mi">1</span><span class="p">;</span> <span class="n">mode</span><span class="o">=</span><span class="nx">block</span>
+<span class="nx">X</span><span class="na">-Frame-Options</span><span class="p">:</span> <span class="nx">SAMEORIGIN</span>
+<span class="nx">Alternate</span><span class="na">-Protocol</span><span class="p">:</span> <span class="mi">80</span><span class="p">:</span><span class="nx">quic</span>
+<span class="nx">Transfer</span><span class="na">-Encoding</span><span class="p">:</span> <span class="nb">chunked</span>
 
-8000
-&lt;!doctype html&gt;&lt;html <span class="nv">itemscope</span><span class="o">=</span><span class="s2">""</span> <span class="nv">itemtype</span><span class="o">=</span><span class="s2">"http://schema.org/WebPage"</span>&gt;&lt;head&gt;&lt;meta <span class="nv">content</span><span class="o">=</span><span class="s2">"Search the world's information, including webpages, images, videos and more. Google has many special features to help you find exactly what you're looking for."</span> <span class="nv">name</span><span class="o">=</span><span class="s2">"description"</span>&gt;&lt;meta <span class="nv">content</span><span class="o">=</span><span class="s2">"noodp"</span> <span class="nv">name</span><span class="o">=</span><span class="s2">"robots"</span>&gt;&lt;meta <span class="nv">itemprop</span><span class="o">=</span><span class="s2">"image"</span> <span class="nv">content</span><span class="o">=</span><span class="s2">"/images/google_favicon_128.png"</span>&gt;&lt;title&gt;Google&lt;/title&gt;&lt;script&gt;<span class="o">(</span><span class="k">function</span><span class="o">(){</span>  ...
+<span class="mi">8000</span>
+<span class="o">&lt;!</span><span class="nb">doctype</span> <span class="nx">html</span><span class="o">&gt;&lt;</span><span class="nx">html</span> <span class="n">itemscope</span><span class="o">=</span><span class="s2">""</span> <span class="n">itemtype</span><span class="o">=</span><span class="s2">"http://schema.org/WebPage"</span><span class="o">&gt;&lt;</span><span class="nb">head</span><span class="o">&gt;&lt;</span><span class="nb">meta</span> <span class="n">content</span><span class="o">=</span><span class="s2">"Search the world's information, including webpages, images, videos and more. Google has many special features to help you find exactly what you're looking for."</span> <span class="n">name</span><span class="o">=</span><span class="s2">"description"</span><span class="o">&gt;&lt;</span><span class="nb">meta</span> <span class="n">content</span><span class="o">=</span><span class="s2">"noodp"</span> <span class="n">name</span><span class="o">=</span><span class="s2">"robots"</span><span class="o">&gt;&lt;</span><span class="nb">meta</span> <span class="n">itemprop</span><span class="o">=</span><span class="s2">"image"</span> <span class="n">content</span><span class="o">=</span><span class="s2">"/images/google_favicon_128.png"</span><span class="o">&gt;&lt;</span><span class="nb">title</span><span class="o">&gt;</span><span class="nx">Google</span><span class="o">&lt;/</span><span class="nb">title</span><span class="o">&gt;&lt;</span><span class="nb">script</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">function</span><span class="p">(){</span>  <span class="nx">...</span>
 </pre></div>
 
 
@@ -174,22 +174,22 @@ Transfer-Encoding: chunked
 <p>Basically the meat of HTTP is defining what is the format for a request and response. Both request and response basically
 using the same structure of content that is it is divided into 2 parts. The first part is called <code>headers</code> and the second
 part known as <code>body</code>.</p>
-<div class="code"><pre><span class="err">POST /index.html HTTP/1.1   ||</span>
-<span class="err">Host: www.google.com        ||&gt; headers</span>
-<span class="err">Accept: */*                 ||</span>
+<div class="code"><pre><span class="n">POST</span> <span class="o">/</span><span class="n">index</span><span class="p">.</span><span class="n">html</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>   <span class="o">||</span>
+<span class="nl">Host:</span> <span class="n">www</span><span class="p">.</span><span class="n">google</span><span class="p">.</span><span class="n">com</span>        <span class="o">||&gt;</span> <span class="n">headers</span>
+<span class="nl">Accept:</span> <span class="err">*/</span><span class="o">*</span>                 <span class="o">||</span>
 
-<span class="err">name=kamal&amp;address=jb       ||&gt; body</span>
+<span class="n">name</span><span class="o">=</span><span class="n">kamal</span><span class="o">&amp;</span><span class="n">address</span><span class="o">=</span><span class="n">jb</span>       <span class="o">||&gt;</span> <span class="n">body</span>
 </pre></div>
 
 
 <p>And the response:-</p>
-<div class="code"><pre>HTTP/1.1 200 OK                                 ||
-Date: Mon, 03 Mar 2014 15:19:22 GMT             ||
-Expires: -1                                     ||&gt; headers
-Cache-Control: private, max-age=0               ||
-Content-Type: text/html; charset=ISO-8859-1     ||
+<div class="code"><pre><span class="nx">HTTP</span><span class="p">/</span><span class="nx">1.1</span> <span class="mi">200</span> <span class="nx">OK</span>                                 <span class="o">||</span>
+<span class="kt">Date</span><span class="p">:</span> <span class="nx">Mon</span><span class="p">,</span> <span class="mi">03</span> <span class="nx">Mar</span> <span class="mi">2014</span> <span class="mi">15</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">22</span> <span class="nb">GMT</span>             <span class="o">||</span>
+<span class="nx">Expires</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span>                                     <span class="o">||&gt;</span> <span class="nb">headers</span>
+<span class="k">Cache</span><span class="na">-Control</span><span class="p">:</span> <span class="k">private</span><span class="p">,</span> <span class="k">max</span><span class="na">-age</span><span class="o">=</span><span class="mi">0</span>               <span class="o">||</span>
+<span class="nb">Content</span><span class="na">-Type</span><span class="p">:</span> <span class="nx">text</span><span class="p">/</span><span class="nx">html</span><span class="p">;</span> <span class="n">charset</span><span class="o">=</span><span class="nx">ISO</span><span class="o">-</span><span class="mi">8859</span><span class="o">-</span><span class="mi">1</span>     <span class="o">||</span>
 
-<span class="nt">&lt;html&gt;&lt;head&gt;&lt;title&gt;</span>...<span class="nt">&lt;/html&gt;</span>                   ||&gt; body
+<span class="o">&lt;</span><span class="nx">html</span><span class="o">&gt;&lt;</span><span class="nb">head</span><span class="o">&gt;&lt;</span><span class="nb">title</span><span class="o">&gt;</span><span class="nx">...</span><span class="o">&lt;/</span><span class="nx">html</span><span class="o">&gt;</span>                   <span class="o">||&gt;</span> <span class="nb">body</span>
 </pre></div>
 
 
@@ -216,7 +216,7 @@ So to give an output from your PHP script, you just use the <code>print</code> o
 
 <p>What if we need to include a custom header in the response ? We use the <code>header()</code> function:-</p>
 <div class="code"><pre><span class="cp">&lt;?php</span>
-<span class="nb">header</span><span class="p">(</span><span class="s1">'Content-Type: text/plain'</span><span class="p">)</span>
+<span class="nx">header</span><span class="p">(</span><span class="s1">'Content-Type: text/plain'</span><span class="p">)</span>
 <span class="k">print</span> <span class="s1">'hello world'</span><span class="p">;</span>
 </pre></div>
 
@@ -232,7 +232,7 @@ So to give an output from your PHP script, you just use the <code>print</code> o
 <p>What if we call <code>print</code> first and later on <code>header()</code>:-</p>
 <div class="code"><pre><span class="cp">&lt;?php</span>
 <span class="k">print</span> <span class="s1">'hello world'</span><span class="p">;</span>
-<span class="nb">header</span><span class="p">(</span><span class="s1">'Content-Type: text/plain'</span><span class="p">)</span>
+<span class="nx">header</span><span class="p">(</span><span class="s1">'Content-Type: text/plain'</span><span class="p">)</span>
 </pre></div>
 
 

@@ -1,0 +1,220 @@
+<!DOCTYPE html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="Generating PDF for Sphinx documentation tools on MacOS X"><meta name="author" content="Mohd Kamal Bin Mustafa"><title>Generating Sphinx PDF on MacOS X | ImportError</title><link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="../assets/css/rst.css" rel="stylesheet" type="text/css"><link href="../assets/css/code.css" rel="stylesheet" type="text/css"><link href="../assets/css/colorbox.css" rel="stylesheet" type="text/css"><link href="../assets/css/theme.css" rel="stylesheet" type="text/css"><link href="../assets/css/custom.css" rel="stylesheet" type="text/css"><link rel="canonical" href="http://k4ml.github.io/posts/sphinx-pdf-on-osx.html"><!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]--><link rel="alternate" type="application/rss+xml" title="RSS (en)" href="../rss.xml"><link rel="alternate" type="application/rss+xml" title="RSS (ms)" href="../ms/rss.xml"><!-- Open Graph Meta Tags BEGIN --><meta content=" Generating Sphinx PDF on MacOS X " property="og:title"><meta content="ImportError" property="og:site_name"><meta content="http://k4ml.github.io/posts/sphinx-pdf-on-osx.html" property="og:url"><meta content="Generating PDF for Sphinx documentation tools on MacOS X" property="og:description"><meta content="article" property="og:type"><meta property="article:author" content="https://www.facebook.com/k4mlm"><meta content="http://i.imgur.com/r0ao0RJ.png" property="og:image"><!-- Open Graph Meta Tags END --></head><body>
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"><div class="container-fluid"><!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://k4ml.github.io">ImportError</a>
+        </div><!-- /.navbar-header -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav"><li><a href="../archive.html">Archives</a>
+            
+        
+    
+        
+            
+                </li><li><a href="../projects.html">Projects</a>
+            
+        
+    
+        
+            
+                </li><li><a href="../categories/index.html">Tags</a>
+            
+        
+    
+        
+            
+                </li><li><a href="../rss.xml">RSS</a>
+            
+        
+    
+
+            </li></ul><ul class="nav navbar-nav navbar-right"><li>
+    
+        
+    
+        
+            </li><li><a href="../ms/index.html" rel="alternate" hreflang="ms">Malay</a></li>
+        
+    
+
+                
+                
+                
+                    
+
+    <li>
+    <a href="sphinx-pdf-on-osx.md" id="sourcelink">Source</a>
+    </li>
+
+
+                
+            </ul></div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav><!-- End of Menubar --><div class="container">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            <div class="col-md-8 col-md-push-4">
+            
+    <article class="postbox post-text"><div class="h-entry" itemscope="itemscope" itemtype="http://schema.org/Article">
+    
+    <h1 class="p-name" itemprop="headline name">Generating Sphinx PDF on MacOS X</h1>
+    
+
+    <hr><small>
+        Posted: <time class="published dt-published" datetime="2015-08-31T10:48:01+08:00" itemprop="datePublished">2015-08-31 10:48</time>
+        
+    
+        
+            
+        
+            
+        
+    
+
+        
+    
+          |  More posts about
+        
+            <a class="tag" href="../categories/sphinx.html"><span class="badge badge-info">sphinx</span></a>
+        
+            <a class="tag" href="../categories/rst.html"><span class="badge badge-info">rst</span></a>
+        
+            <a class="tag" href="../categories/latex.html"><span class="badge badge-info">latex</span></a>
+        
+            <a class="tag" href="../categories/pdflatex.html"><span class="badge badge-info">pdflatex</span></a>
+        
+            <a class="tag" href="../categories/pdf.html"><span class="badge badge-info">pdf</span></a>
+        
+    
+
+    </small>
+    <hr><div class="e-content" itemprop="articleBody text">
+    <div><p>Latex distribution is known to be very big on any platform. The MacTex package is 2.5GB download. Fortunately there's a minimal package, BasicTex which is around 100MB. That's perfect and seem to include all needed for Sphinx to generate the pdf.</p>
+<p>But after running <code>make latexpdf</code> in my Sphinx doc, got errors about missing sty.</p>
+<div class="code"><pre>! LaTeX Error: File `wrapfig.sty' not found.
+
+Type X to quit or &lt;RETURN&gt; to proceed,
+or enter new name. (Default extension: sty)
+</pre></div>
+
+
+<p>Searching around, lot of solutions mention about install <code>texlive-late-extra</code> package (on Debian/Ubuntu). Until I found that TexLive also has a packages manager called <code>tlmgr</code>. First attempt of running <code>tlmgr</code> complain about itself require an update:-</p>
+<div class="code"><pre>sudo tlmgr update --self
+</pre></div>
+
+
+<p>After that I need to install the following packages:-</p>
+<div class="code"><pre>sudo tlmgr install titlesec framed threeparttable wrapfig multirow collection-fontsrecommended
+</pre></div>
+
+
+<p>And Sphinx successfully generated the PDF.</p></div>
+    </div>
+    
+        <meta content="Generating PDF for Sphinx documentation tools on MacOS X" itemprop="description"></div>
+    
+    
+        <ul class="pager"><li class="previous">
+                <a href="telegram-bot-using-webscriptio.html" rel="prev">← Previous post</a>
+            </li>
+        
+        
+        </ul><div id="disqus_thread"></div>
+        <script>
+        var disqus_shortname ="importerror",
+        
+            disqus_url="http://k4ml.github.io/posts/sphinx-pdf-on-osx.html",
+        
+        disqus_title="Generating Sphinx PDF on MacOS X",
+        disqus_identifier="cache/posts/sphinx-pdf-on-osx.html",
+        disqus_config = function () {
+            this.language = "";
+        };
+        (function() {
+            var dsq = document.createElement('script'); dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink" rel="nofollow">Comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+
+    
+
+    
+    
+    
+
+    </article></div>
+            <div class="col-md-4 col-md-pull-8">
+                <div class="panel panel-default"></div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading"><h3 class="panel-title">About me</h3></div>
+                    <div class="panel-body">
+                        <p><img src="../images/me-small.jpg" style="float: right; width: 130px; height: 131px;">
+Web developer in Malaysia. Currently work at <a href="http://www.marimore.co.jp/">MARIMORE Inc</a> building internet 
+services using Python and Django web framework.</p>
+<p><code>ImportError</code> is an error message emitted by Python when it failed to load certain
+module as requested by programmer. It's a very common error when someone new to
+the language trying it out. This website on the same theme, will try provide help
+for newcomers on any technologies to overcome their first hurdle.</p>
+<div class="well well-sm">
+Try most of the examples you may find here on Digital Ocean cloud service. They provide
+excellent VPS at a very cheaper price. Using this <a href="https://www.digitalocean.com/?refcode=631fbc1bf714">referral link</a>
+you'll get USD10 credits upon sign up. That's enough to run single VPS with 1GB RAM for a month.
+</div>
+
+<h3>Others</h3>
+<p>I can also be found at the following sites:-</p>
+<ul><li>http://k4ml.blogspot.com/</li>
+<li>http://k4ml.github.io/</li>
+<li>http://metak4ml.blogspot.com/</li>
+<li>http://www.mydev.my/</li>
+<li>http://github.com/k4ml/</li>
+</ul><h3>Disclaimers</h3>
+<p>The postings on this site are my own and don't necessarily represent my employer's
+positions, strategies or opinions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End of body content-->
+
+        <footer>
+            Contents © 2015         <a href="mailto:joe@demo.site">Mohd Kamal Bin Mustafa</a> - Powered by         <a href="http://getnikola.com">Nikola</a>         
+        </footer></div>
+</div>
+
+
+    
+        
+            <script src="../assets/js/jquery-1.10.2.min.js" type="text/javascript"></script><script src="../assets/js/bootstrap.min.js" type="text/javascript"></script><script src="../assets/js/jquery.colorbox-min.js" type="text/javascript"></script><!-- Social buttons --><div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
+<a class="addthis_button_more">Share</a>
+<ul><li><a class="addthis_button_facebook"></a>
+</li><li><a class="addthis_button_google_plusone_share"></a>
+</li><li><a class="addthis_button_linkedin"></a>
+</li><li><a class="addthis_button_twitter"></a>
+</li></ul></div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script><!-- End of social buttons --><script type="text/javascript">jQuery("a.image-reference").colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-44689253-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script></body></html>

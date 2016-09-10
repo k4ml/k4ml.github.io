@@ -3,16 +3,10 @@ layout: default
 ---
 
 <div class="posts">
-  {% for post in site.posts %}
     <article class="post">
+    <h1>About Me</h1>
+    <p>I'm a Lead Developer at Xoxzo Inc, where we build Xoxzo.com, providing API services for developer to develop messaging and voice based application.</p>
 
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
-
-      <div class="entry">
-        {{ post.excerpt }}
-      </div>
-
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
+    <p>The postings on this site are my own and don't necessarily represent my employer's positions, strategies or opinions. I can be reached via Twitter @k4ml.</p>
     </article>
-  {% endfor %}
 </div>

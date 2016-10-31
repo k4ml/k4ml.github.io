@@ -4,6 +4,18 @@ title: Learning Elm - Part 1
 tags: elm, learning
 ---
 
+**Update 1**
+Look like it's a bit unclear my end goal of this exercise so I list down the requirements here:-
+
+1. Have 2 values instead of single value like the original example.
+2. When button + clicked, it should increment value 1 by 1, and increment value 2 by 10.
+3. When button - clicked, it should decrement value 1 by 1, and increment value 2 by 10.
+4. When button Reset clicked, it should increment value 2 by 10.
+
+As you can see above, the increment/decrement logic for value 1 is different but for value 2, the logic is similar in any conditions so it should be implement in a single place, instead of having to repeat it for each of the conditions.
+
+**#####***
+
 I decided to try [Elm] yesterday but after spending a couple of hours, a bit frustrated after feeling I'm not going anywhere. Everywhere on the web people are praising Elm as easy to learn, even a 4th grader manage to build a simple games in just few hours, and I'm still glaring trying to understand the button examples from the docs.
 
 The button example is quite simple, you have 2 buttons that when clicked, will increment or decrement a single value (model). The code look like this:-

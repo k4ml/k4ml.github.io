@@ -20,7 +20,7 @@ I decided to try [Elm] yesterday but after spending a couple of hours, a bit fru
 
 The button example is quite simple, you have 2 buttons that when clicked, will increment or decrement a single value (model). The code look like this:-
 
-```elm
+```
 import Html exposing (Html, button, div, text)
 import Html.App as Html
 import Html.Events exposing (onClick)

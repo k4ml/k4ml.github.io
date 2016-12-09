@@ -93,7 +93,24 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.BCryptPasswordHasher',
 ]
 ```
-Parameter `cost` ataupun dipanggil `iterations` dalam Django tidak boleh ditukar melalui function `make_password` tetapi dengan subclass hashing algorithm yang hendak digunakan dan _override_ _attribute_ `iterations`.
+Parameter `cost` ataupun dipanggil `iterations` dalam Django tidak boleh ditukar melalui function `make_password` tetapi dengan subclass hashing algorithm yang hendak digunakan dan _override_ _attribute_ `iterations`. Algorithm seperti Argon2 menawarkan tetapan `cost` yang lebih _granular_ iaitu `time_cost`, `memory_cost` dan juga `
+parallelism`. `salt` masih boleh ditetapkan sendiri tetapi seperti mana dalam PHP, adalah lebih baik menggunakan `salt` yang dijana secara rawak oleh Django. Bagaimana `salt` ini djana boleh dilihat dalam function `get_random_string()` dalam module [`django.utils.crypto`][2].
 
+Kita lihat pula bagaimana bentuk hash yang dijana oleh Django:-
+
+```
+>>> from django.contrib.auth.hashers import make_password
+>>> make_password('abc123')
+'pbkdf2_sha256$30000$HakijyaDZKHb$TVTjWSMuYSyvOMwtyz4wMIpY1Bc5SFvgTSuhBJXATXM='
+>>> make_password('abc123', salt='kamal')
+'pbkdf2_sha256$30000$kamal$clvptfJHnDCjo7GWYzTHk23jfXt3PxmoOagIbhkXCr4='
+```
+Format hash yang dijana oleh Django adalah seperti berikut:-
+
+```
+<algorithm>$<iterations>$<salt>$<hash>
+```
+
+[2]:https://github.com/django/django/blob/master/django/utils/crypto.py#L54
 
 [1]:https://laravel.com/docs/5.3/hashing

@@ -80,4 +80,20 @@ String yang pertama adalah hash yang dijana, manakala array yang kedua adalah ma
 $algo$cost$salthash
 ```
 Untuk memeriksa semula password tersebut, kita tidak memerlukan `salt` kerana ia boleh dikendalikan oleh function `password_verify()` tetapi jika ingin tahu juga nilai `salt` yang digunakan, ia adalah 22 karakter yang pertama daripada hash.
+
+## Django
+Seterusnya, jom kita lihat pula kaedah penjanaan hash oleh Django. Django membekalkan developer dengan function `make_passwor()` yang boleh diimport daripada module `django.contrib.auth.hashers`. Parameter yang perlu diberikan kepada function ini hampir sama dengan function PHP `password_hash()` iaitu password, salt dan hashing algorithm yang hendak digunakan. Secara default django akan menggunakan PBKDF2 tetapi turut menyediakan algorithm lain seperti dalam senarai di bawah:-
+
+```
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+]
+```
+Parameter `cost` ataupun dipanggil `iterations` dalam Django tidak boleh ditukar melalui function `make_password` tetapi dengan subclass hashing algorithm yang hendak digunakan dan _override_ _attribute_ `iterations`.
+
+
 [1]:https://laravel.com/docs/5.3/hashing

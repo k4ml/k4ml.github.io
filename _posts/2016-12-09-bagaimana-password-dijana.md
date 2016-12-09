@@ -13,3 +13,41 @@ Satu "best practice" yang diamalkan setakat ini melibatkan password adalah untuk
 Terdapat banyak cara bagaimana hash boleh dihasilkan. Ada cara yang sudah tidak boleh digunakan kerana ia menghasilkan hash yang tidak selamat. Dalam tulisan ini, mari kita tengok bagaimana password disimpan dalam 2 framework open source yang terkenal iaitu PHP Laravel dan Python Django.
 
 ## Laravel
+Jika dirujuk pada [dokumentasi][1], Laravel menyediakan function `Hash::make()` yang boleh digunakan untuk menjana hash bagi password. Implementasi function tersebut agak simple:-
+
+```
+<?php
+namespace Illuminate\Hashing;
+use RuntimeException;
+use Illuminate\Contracts\Hashing\Hasher as HasherContract;
+
+class BcryptHasher implements HasherContract
+{
+    /**
+     * Default crypt cost factor.
+     *
+     * @var int
+     */
+    protected $rounds = 10;
+    /**
+     * Hash the given value.
+     *
+     * @param  string  $value
+     * @param  array   $options
+     * @return string
+     *
+     * @throws \RuntimeException
+     */
+    public function make($value, array $options = [])
+    {
+        $cost = isset($options['rounds']) ? $options['rounds'] : $this->rounds;
+        $hash = password_hash($value, PASSWORD_BCRYPT, ['cost' => $cost]);
+        if ($hash === false) {
+            throw new RuntimeException('Bcrypt hashing not supported.');
+        }
+        return $hash;
+    }
+```
+Tampak disini Laravel cuma menggunakan function built-in daripada PHP `password_hash()`. Bagaimana function ini menjana hash ?
+
+[1]:https://laravel.com/docs/5.3/hashing

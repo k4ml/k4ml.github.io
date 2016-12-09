@@ -82,7 +82,7 @@ $algo$cost$salthash
 Untuk memeriksa semula password tersebut, kita tidak memerlukan `salt` kerana ia boleh dikendalikan oleh function `password_verify()` tetapi jika ingin tahu juga nilai `salt` yang digunakan, ia adalah 22 karakter yang pertama daripada hash.
 
 ## Django
-Seterusnya, jom kita lihat pula kaedah penjanaan hash oleh Django. Django membekalkan developer dengan function `make_passwor()` yang boleh diimport daripada module `django.contrib.auth.hashers`. Parameter yang perlu diberikan kepada function ini hampir sama dengan function PHP `password_hash()` iaitu password, salt dan hashing algorithm yang hendak digunakan. Secara default django akan menggunakan PBKDF2 tetapi turut menyediakan algorithm lain seperti dalam senarai di bawah:-
+Seterusnya, jom kita lihat pula kaedah [penjanaan hash][django-hash] oleh Django. Django membekalkan developer dengan function `make_passwor()` yang boleh diimport daripada module `django.contrib.auth.hashers`. Parameter yang perlu diberikan kepada function ini hampir sama dengan function PHP `password_hash()` iaitu password, salt dan hashing algorithm yang hendak digunakan. Secara default django akan menggunakan PBKDF2 tetapi turut menyediakan algorithm lain seperti dalam senarai di bawah:-
 
 ```
 PASSWORD_HASHERS = [
@@ -110,7 +110,9 @@ Format hash yang dijana oleh Django adalah seperti berikut:-
 ```
 <algorithm>$<iterations>$<salt>$<hash>
 ```
+Kita telah lihat teknik hashing yang digunakan oleh 2 framework popular ini. Semoga ia dapat menjadi panduan untuk anda praktikkan dalam aplikasi yang anda bangunkan. Jika anda tahu kaedah yang digunakan dalam framework lain, boleh kongsikan melalui ruangan komen di bawah.
 
 [2]:https://github.com/django/django/blob/master/django/utils/crypto.py#L54
 
 [1]:https://laravel.com/docs/5.3/hashing
+[django-hash]:https://docs.djangoproject.com/en/1.10/topics/auth/passwords/

@@ -48,6 +48,36 @@ class BcryptHasher implements HasherContract
         return $hash;
     }
 ```
-Tampak disini Laravel cuma menggunakan function built-in daripada PHP `password_hash()`. Bagaimana function ini menjana hash ?
+Tampak disini Laravel cuma menggunakan function built-in daripada PHP `password_hash()`. Bagaimana function ini menjana hash ? Ada 2 parameter penting yang perlu diberikan kepada function ini iaitu password yang hendak dijana hash dan hashing algorithm yang hendak digunakan. Secara default, PHP akan menggunakan `bcrypt` sebagai hashing algorithm. Parameter optional yang boleh diberikan kepada function ini adalah `cost` dan `salt`. `cost` adalah jumlah pengulangan (iteration) dalam menjana hash tersebut supaya proses meneka hash ini akan memakan masa yang lebih lama. Jumlah default `cost` adalah 10. `salt` pula bertujuan menjadikan setiap hash unik dan tidak boleh diteka menggunakan kaedah dipanggil `rainbow table`. Parameter `salt` ini bagaimanapun sudah _deprecated_ dalam PHP 7. Developer PHP lebih menggalakkan `salt` yang dijana secara rawak oleh PHP sendiri.
 
+Jom kita tengok bagaimana hash ini dijana oleh PHP:-
+
+```
+<?php
+
+$hash = password_hash('abc123', PASSWORD_DEFAULT);
+print $hash;
+print_r(password_get_info($hash));
+```
+Ia akan menghasilkan output seperti berikut:-
+
+```
+$2y$10$RxSuRFfpRTsIZxwoZHzudeFl7nhiNx86pyl1Lcr6V95GM5j7GotYK
+Array
+(
+    [algo] => 1
+    [algoName] => bcrypt
+    [options] => Array
+        (
+            [cost] => 10
+        )
+
+)
+```
+String yang pertama adalah hash yang dijana, manakala array yang kedua adalah maklumat berkaitan hash tersebut seperti algorithm yang digunakan dan nilai `cost`. `salt` tidak dipaparkan di sini kerana sudah dimasukkan sekali dalam hash yang dijana. Hash tersebut sentiasa dalam format:-
+
+```
+$algo$cost$salthash
+```
+Untuk memeriksa semula password tersebut, kita tidak memerlukan `salt` kerana ia boleh dikendalikan oleh function `password_verify()` tetapi jika ingin tahu juga nilai `salt` yang digunakan, ia adalah 22 karakter yang pertama daripada hash.
 [1]:https://laravel.com/docs/5.3/hashing

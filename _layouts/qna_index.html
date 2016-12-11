@@ -1,0 +1,12 @@
+---
+layout: default
+---
+
+{% include qna.html %}
+<ul>
+{% for qna in site.qna  %}
+    {% if qna.title != 'Index' %}
+    <li><a href="{{ qna.url }}">{{ qna.title }}</a></li>
+    {% endif %}
+{% endfor %}
+</ul>

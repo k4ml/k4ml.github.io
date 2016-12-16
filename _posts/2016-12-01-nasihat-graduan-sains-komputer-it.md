@@ -22,10 +22,16 @@ Blog ini anda boleh khususkan kepada kandungan teknikal sahaja atau campur sekal
 Website atau blog peribadi ini pada akhirnya akan menjadi _personal branding_ anda. Untuk contoh _personal branding_ yang berkesan, tidak perlu pergi jauh. Anda boleh tengok pada laman web [red1.org](http://red1.org), (Redhuan D. Oon), ketua projek ERP bertaraf dunia, Adempiere.
 
 ## Daftar akaun github/bitbucket/gitlab
+Jika sebelum ini saya nyatakan kerjaya sebagai software developer bukan sekadar melibatkan coding semata-mata, tetapi code tetap intipati utama dalam kerjaya ini. Majikan tidak dapat lari daripada melihat bagaimana anda menulis kod untuk menyelesaikan sesuatu masalah. *Code repository hosting* seperti Github, BitBucket atau Gitlab adalah tempat di mana anda boleh berkongsi kod yang anda tulis dengan developer yang lain.
+
+Namun fungsi paling penting *code hosting* ini adalah ia membolehkan anda berkolaborasi dengan developer lain dalam menyelesaikan sesuatu masalah. Kerja software developer bukan berbentuk *lone ranger*. Ia memerlukan anda berkerjasama dengan developer lain dan melalui Github, anda boleh mempraktikkan kemahiran ini walaupun anda masih belum bekerja.
 
 ## Masuk kelas intensif Bahasa Inggeris
+80% daripada rujukan berkaitan software development pada masa ini masih dalam Bahasa Inggeris. Jadi anda tidak dapat lari daripada menguasai BI jika hendak pergi lebih jauh dalam bidang ini. Saya telah pun menulis berkaitan [kepentingan BI sebelum ini](/kenapa-kena-belajar-bahasa-inggeris/).
 
 ## Libatkan diri sekurang-kurangnya dalam satu projek open source
+
+Saya telah nyatakan sebelum ini, software development adalah satu kolaborasi tetapi bagaimana anda hendak menimba pengalaman tanpa memulakan kerjaya terlebih dahulu ? Inilah kelebihan terlibat dalam projek *open source*. Ia umpama anda telah pun menyertai sebuah *team* software developer dan jika projek tersebut adalah projek yang bertaraf dunia, maka pengalaman yang anda boleh timba adalah tidak ternilai.
 
 # Rujukan
 1. http://danielpocock.com/getting-selected-for-google-summer-of-code-2016

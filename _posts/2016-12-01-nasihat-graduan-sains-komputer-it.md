@@ -33,7 +33,12 @@ Namun fungsi paling penting *code hosting* ini adalah ia membolehkan anda berkol
 
 Saya telah nyatakan sebelum ini, software development adalah satu kolaborasi tetapi bagaimana anda hendak menimba pengalaman tanpa memulakan kerjaya terlebih dahulu ? Inilah kelebihan terlibat dalam projek *open source*. Ia umpama anda telah pun menyertai sebuah *team* software developer dan jika projek tersebut adalah projek yang bertaraf dunia, maka pengalaman yang anda boleh timba adalah tidak ternilai.
 
+## Nasihat Google
+Google telah menyediakan satu [panduan yang bagus][google-guide] untuk pelajar menyiapkan diri mereka bagi menceburi bidang software development. Jadi luangkan masa khas untuk mengikuti apa yang telah mereka cadangkan.
+
 # Rujukan
 1. http://danielpocock.com/getting-selected-for-google-summer-of-code-2016
 1. http://www.joelonsoftware.com/articles/CollegeAdvice.html
 1. https://simpleprogrammer.com/2016/07/18/technical-skills-software-developer/
+
+[google-guide]:https://www.google.com/about/careers/students/guide-to-technical-development.html

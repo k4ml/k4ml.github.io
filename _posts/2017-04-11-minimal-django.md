@@ -1,3 +1,9 @@
+---
+layout: post
+title: Minimal Django
+tags: django
+---
+
 Minimal django application. When things become so big and complex as django, sometimes it help to tear it up, broken it into smaller pieces to see how it work. So I start with just this in `app.py`:-
 
 ```

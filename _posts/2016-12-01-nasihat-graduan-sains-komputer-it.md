@@ -36,9 +36,15 @@ Saya telah nyatakan sebelum ini, software development adalah satu kolaborasi tet
 ## Nasihat Google
 Google telah menyediakan satu [panduan yang bagus][google-guide] untuk pelajar menyiapkan diri mereka bagi menceburi bidang software development. Jadi luangkan masa khas untuk mengikuti apa yang telah mereka cadangkan.
 
+## Nasihat lain
+Lelaki ini telah menyenaraikan satu '[study plan]' yang lengkap untuk subjek Sains Komputer bagi mereka yang ingin mendapatkan pekerjaan sebagai Software Engineer. Ini apa yang dia cakap:-
+
+>I originally created this as a short to-do list of study topics for becoming a software engineer, but it grew to the large list you see today. After going through this study plan, I got hired as a Software Development Engineer at Amazon! You probably won't have to study as much as I did. Anyway, everything you need is here.
+
 # Rujukan
 1. http://danielpocock.com/getting-selected-for-google-summer-of-code-2016
 1. http://www.joelonsoftware.com/articles/CollegeAdvice.html
 1. https://simpleprogrammer.com/2016/07/18/technical-skills-software-developer/
 
 [google-guide]:https://www.google.com/about/careers/students/guide-to-technical-development.html
+[study plan]:https://github.com/jwasham/coding-interview-university

@@ -32,7 +32,8 @@ Setelah saluran komunikasi dibuka, kita perlu "bercakap" dengan server tersebut 
 
 Sesi "bercakap" dengan dengan server tersebut akan kelihatan seperti ini:-
 
-```helo cfm.org.my
+```
+helo cfm.org.my
 220-magneto.mschosting.com ESMTP Exim 4.88 #1 Sun, 16 Apr 2017 09:20:15 +0800
 220-We do not authorize the use of this system to transport unsolicited,
 220 and/or bulk e-mail.```

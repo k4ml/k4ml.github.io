@@ -66,7 +66,7 @@ Jadi seperti yang dinyatakan sebelum ini, bergantung kepada server tersebut untu
 
 Ok, kita telah tengok bagaimana hendak mengenalpasti email server sesuatu alamat email dengan mengambil terus bahagian selepas @ sebagai email server bagi alamat tersebut. Bagaimanapun ada kes di mana email server bagi sesuatu email menggunakan alamat server yang lain. Dalam kes ini kita perlu melihat kepada apa yang dipanggil MX record domain tersebut. Tools yang biasa digunakan adalah dig tapi kita boleh juga menggunakan web based tools dengan mencari "mx record lookup" melalui Google.
 
-Antara yang anda akan jumpa adalah https://mxtoolbox.com/. Bagaimana pun untuk tulisan ini saya akan menggunakan command line tools yang dipanggil dig.
+Antara yang anda akan jumpa adalah https://mxtoolbox.com/. Bagaimana pun untuk tulisan ini aku akan menggunakan command line tools yang dipanggil dig.
 
 ```
 dig -t mx gmail.com
@@ -83,4 +83,6 @@ gmail.com.    3599  IN  MX  30 alt3.gmail-smtp-in.l.google.com.
 gmail.com.    3599  IN  MX  20 alt2.gmail-smtp-in.l.google.com.
 ```
 
-Jadi untuk menghantar email ke alamat gmail, kita boleh mencuba mana-mana server yang disenaraikan di atas.
+Jadi untuk menghantar email ke alamat gmail, kita boleh mencuba mana-mana server yang disenaraikan di atas. Secara praktisnya, email server akan melihat kewujudan MX record terlebih dahulu sebagai destinasi untuk menghantar email. Hanya jika MX record tidak wujud, maka nama domain selepas `@a` akan dianggap sebagai destinasi email tersebut.
+
+Setakat ini dahulu, diharap anda semua akan lebih jelas bagaimana proses penghantaran email dilakukan.

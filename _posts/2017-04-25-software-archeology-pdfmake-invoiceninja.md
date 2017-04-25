@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Software archeology: PDFMake in InvoiceNinja
+title: "Software archeology: PDFMake in InvoiceNinja"
 tags: php, archeology, pdf
 ---
 

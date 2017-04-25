@@ -4,7 +4,7 @@ title: Software archeology: PDFMake in InvoiceNinja
 tags: php, archeology, pdf
 ---
 
-Inspired by this [article], where it is the first time I found the term “software archaeology” being used, I decided to look into how PDF generation library called PDFMake being used in InvoiceNinja.
+Inspired by this [article][1], where it is the first time I found the term “software archaeology” being used, I decided to look into how PDF generation library called PDFMake being used in InvoiceNinja.
 
 Based on this HackerNews post, [PDFMake was announced][2] on June, 1st 2015, almost a year ago. InvoiceNinja on the other hand was [first released 2 years ago][3]. So there must be some discussion somewhere (as in any typical open source project) where the developers discussed about integrating PDFMake into the project.
 

@@ -14,6 +14,8 @@ The first mention about pdfmake is in this [commit][4]. The first mention about 
 >https://github.com/bpampuch/pdfmake/wiki/Custom-Fonts—client-side
 >Translating the GUI mainly requires translating the following file.
 
+I was unable to dig further and this post just sitting in the draft for too long, I'll just post it as it is now.
+
 [1]:http://mapleoin.github.io/perma/python-class-meta
 [2]:https://news.ycombinator.com/item?id=9630431
 [3]:https://laravel.io/forum/03-11-2014-invoice-ninja-a-large-open-source-laravel-application-is-live

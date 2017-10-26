@@ -81,7 +81,6 @@ view model =
 This code work perfectly when I try with `elm-reactor`. It's a good start. So I start to change it a bit by adding a reset button that will reset the model value back to 0. As claimed in the docs, it work quite intuitively, I managed to get around it even without fully understanding the core language yet.
 
 ```
-diff --git a/button2.elm b/button2.elm
 index a505170..5b20f65 100644
 --- a/button2.elm
 +++ b/button2.elm

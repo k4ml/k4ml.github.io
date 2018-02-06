@@ -7,7 +7,7 @@ tags:
   - python
 ---
 
-_Feb 2018 update_: Telegram now officially has [Telegram Login](https://telegram.org/blog/login) ! I took a brief look on how the new login feature work and I think the main difference is that the auth data is [signed using the bot's token](https://gist.github.com/anonymous/6516521b1fb3b464534fbc30ea3573c2) while in my approach, it was signed using the [website's secret key](https://github.com/k4ml/gramlogin/blob/master/gramlogin/auth.py).
+*Feb 2018 update*: Telegram now officially has [Telegram Login](https://telegram.org/blog/login) ! I took a brief look on how the new login feature work and I think the main difference is that the auth data is [signed using the bot's token](https://gist.github.com/anonymous/6516521b1fb3b464534fbc30ea3573c2) while in my approach, it was signed using the [website's secret key](https://github.com/k4ml/gramlogin/blob/master/gramlogin/auth.py).
 
 I have long thinking about this. The idea is that, to login to the django site, you send a message to a bot which running as webhook in the django app. Upon receiving the message, the bot will create new user using Telegram username. The bot will then return a special url that user should open in order to login. So I decided to build a POC for this.
 

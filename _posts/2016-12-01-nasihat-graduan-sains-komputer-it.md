@@ -33,6 +33,21 @@ Namun fungsi paling penting *code hosting* ini adalah ia membolehkan anda berkol
 
 Saya telah nyatakan sebelum ini, software development adalah satu kolaborasi tetapi bagaimana anda hendak menimba pengalaman tanpa memulakan kerjaya terlebih dahulu ? Inilah kelebihan terlibat dalam projek *open source*. Ia umpama anda telah pun menyertai sebuah *team* software developer dan jika projek tersebut adalah projek yang bertaraf dunia, maka pengalaman yang anda boleh timba adalah tidak ternilai.
 
+## Sertai komuniti IT/Tech
+
+Terlalu banyak sekali komuniti-komuniti IT atau software developer sama ada tempatan ataupun global. Di dalam komuniti ini ramai mereka yang telah lama berada dalam industri dan sudah pasti banyak input-input berguna yang anda boleh dapat daripada mereka. Di samping itu, mereka juga berkemungkinan turut mencari bakat-bakat baru bagi menyertai tempat mereka bekerja. Jadi selain belajar anda turut mempunyai peluang kerjaya sekali. Saya hanya senaraikan sebahagian daripada komuniti-komuniti ini, pandai-pandailah anda cari bagaimana hendak menyertai mereka ;)
+
+  * JomWeb.
+  * Startup/Developer on Telegram.
+  * r/programming at reddit.
+  * Hacker News YCombinator.
+  * Dev.to.
+  * Devkini.
+  * Sumber Terbuka Malaysia on Telegram.
+  * Python User Group on Facebook.
+  * Belajar Python on Telegram.
+  * ...
+
 ## Nasihat Google
 Google telah menyediakan satu [panduan yang bagus][google-guide] untuk pelajar menyiapkan diri mereka bagi menceburi bidang software development. Jadi luangkan masa khas untuk mengikuti apa yang telah mereka cadangkan.
 

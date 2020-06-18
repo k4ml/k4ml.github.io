@@ -16,7 +16,7 @@ The first mention about pdfmake is in this [commit][4]. The first mention about 
 
 I was unable to dig further and this post just sitting in the draft for too long, I'll just post it as it is now.
 
-[1]:http://mapleoin.github.io/perma/python-class-meta
+[1]:http://web.archive.org/web/20160414102840/http://mapleoin.github.io/perma/python-class-meta
 [2]:https://news.ycombinator.com/item?id=9630431
 [3]:https://laravel.io/forum/03-11-2014-invoice-ninja-a-large-open-source-laravel-application-is-live
 [4]:https://github.com/invoiceninja/invoiceninja/commit/69f474cc67fafcbcfb45c423bc89c4a0ceb892b8

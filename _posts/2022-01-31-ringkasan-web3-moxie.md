@@ -6,6 +6,7 @@ tags:
 ---
 
 Ringkasan tulisan [Moxie berkaitan web3][1]. Untuk yang tidak kenal, dia adalah developer Signal yang mana sistem enkripsinya digunakan dalam Whatsapp.
+
 1. Istilah web3 agak kabur apa yang dimaksudkan sebenarnya tapi pada kefahaman beliau, boleh dianggap web1 sebagai decentralized web, web2 centralized dan web3 cuba nak jadi decentralized balik. Yang dimaksudkan di sini adalah pada permulaan web, visinya adalah semua orang ada keupayaan utk terbitkan maklumat pada platform masing2. Setiap orang boleh setup web server sendiri, email server sendiri dan sebagainya.
 2. Kemudian kita sedar, walaupun secara teknikal boleh, untuk setup dan run kesemua services ni perlukan sumber masa, tenaga dan wang ringgit yang banyak. Ini disedari oleh korporat dan perkhidmatan seperti hotmail dan kemudian gmail muncul. Sedikit demi sedikit orang dah tak guna email server sendiri lagi sebab perkhidmatan yang disediakan gmail lebih efisien.
 3. Pada masa ini, penerbitan maklumat melalui blog dan website peribadi masih tinggi. Tapi perkhidmatan utk fungsi ini mula muncul seperti blogspot, livejournal dan kemudian wordpress.com. Pembangunan komuniti online juga masih berbentuk self-hosted, menggunakan aplikasi seperti phpbb atau ada satu lagi aplikasi berbayar aku lupa nama dia yang agak popular juga kalau nak bina online group.

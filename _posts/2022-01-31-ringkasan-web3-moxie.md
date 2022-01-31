@@ -1,6 +1,11 @@
+---
+layout: post
+title: Ringkasan tulisan Moxie berkaitan web3
+tags:
+  - web3,p2p,defi,ethereum,nft
+---
 
-
-Ringkasan tulisan Moxie berkaitan web3. Untuk yang tidak kenal, dia adalah developer Signal yang mana sistem enkripsinya digunakan dalam Whatsapp.
+Ringkasan tulisan [Moxie berkaitan web3][1]. Untuk yang tidak kenal, dia adalah developer Signal yang mana sistem enkripsinya digunakan dalam Whatsapp.
 1. Istilah web3 agak kabur apa yang dimaksudkan sebenarnya tapi pada kefahaman beliau, boleh dianggap web1 sebagai decentralized web, web2 centralized dan web3 cuba nak jadi decentralized balik. Yang dimaksudkan di sini adalah pada permulaan web, visinya adalah semua orang ada keupayaan utk terbitkan maklumat pada platform masing2. Setiap orang boleh setup web server sendiri, email server sendiri dan sebagainya.
 2. Kemudian kita sedar, walaupun secara teknikal boleh, untuk setup dan run kesemua services ni perlukan sumber masa, tenaga dan wang ringgit yang banyak. Ini disedari oleh korporat dan perkhidmatan seperti hotmail dan kemudian gmail muncul. Sedikit demi sedikit orang dah tak guna email server sendiri lagi sebab perkhidmatan yang disediakan gmail lebih efisien.
 3. Pada masa ini, penerbitan maklumat melalui blog dan website peribadi masih tinggi. Tapi perkhidmatan utk fungsi ini mula muncul seperti blogspot, livejournal dan kemudian wordpress.com. Pembangunan komuniti online juga masih berbentuk self-hosted, menggunakan aplikasi seperti phpbb atau ada satu lagi aplikasi berbayar aku lupa nama dia yang agak popular juga kalau nak bina online group.
@@ -16,3 +21,6 @@ One of the surprising things to me about web3, despite being built on “crypto,
 11. Apa yang cuba dibuat melalui web3, boleh saja dibuat dalam web2 tapi ia tidak akan menarik sebarang minat kerana tiada kaitan dgn kripto. Dan centralization pada platform yang cuba dielakkan sebenarnya sedikit demi sedikit dah mula bertapak dalam web3. Penggalak sebenar web3 tidak berminat pun dengan decentralization, tapi di mana duit berlegar.
 12. Web3 masih pada peringkat awal jadi tidak menghairankan golongan dev begitu teruja dengannya, ia seakan memberi peluang untuk kita membina semula Internet, sesuatu yang mungkin kebanyakkan generasi developer sekarang yang terlepas peluang dengan web1, walaupun akhirnya ia hanya mengulang kitaran yang sama.
 13. Mengharapkan web3 menghasilkan visi decentralization mungkin akan berakhir dengan kekecewaan, tapi jika duit yang dicari, melihat kepada momentum yang ia terima setakat ini, tiada tanda ia akan berakhir jadi mungkin itu boleh dijadikan matlamat jika mahu masuk ke dunia web3.
+
+
+[1]:https://moxie.org/2022/01/07/web3-first-impressions.html

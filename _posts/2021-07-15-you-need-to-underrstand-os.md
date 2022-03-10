@@ -1,6 +1,6 @@
 ---
 layout: post
-title: You need to understand OS to be an effective software developer
+title: You need to understand Operating System to be an effective software developer
 tags:
   - os,linux
 ---

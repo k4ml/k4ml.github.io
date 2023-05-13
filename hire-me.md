@@ -16,4 +16,4 @@ Are you struggling with a technical issue in your Python web development project
 - Long-term projects: I don't have the capacity to work on long-term or high-scale projects at this time. However, if you have a short-term problem that needs solving, I'm happy to help!
 - General web development services: While I specialize in Python web development, I don't offer other web development services such as design or hosting.
 
-Ready to get started? Contact me today to discuss your specific problem and learn more about how I can help, both as a Python web developer and a tech consultant.
+Ready to get started? <a href="https://forms.gle/sQuVQv4zVYbe6Fp58">Contact me</a> today to discuss your specific problem and learn more about how I can help, both as a Python web developer and a tech consultant.

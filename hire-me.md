@@ -10,7 +10,7 @@ Are you struggling with a technical issue in your Python web development project
 - Problem-solving skills: I'm experienced in identifying and solving a wide range of problems that can arise in Python web development projects.
 - Tech consultation: I'm happy to provide expert advice and guidance on technical issues related to Python web development.
 - Short-term solutions: I'm only interested in short-term jobs that can be completed in a few hours. This allows me to focus on the task at hand and deliver results quickly.
-- Affordable rates: My rates is USD60.
+- Affordable rates: My rates is USD60. Payment is via Stripe. An invoice will be sent once we agreed on the required hours.
 
 ## What I don't offer:
 - Long-term projects: I don't have the capacity to work on long-term or high-scale projects at this time. However, if you have a short-term problem that needs solving, I'm happy to help!

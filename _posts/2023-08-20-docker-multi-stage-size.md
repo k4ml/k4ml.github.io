@@ -41,7 +41,7 @@ CMD /app/.render/run.sh
 
 The build is split into two parts. In the first part (py-build) we're building all the Python dependencies as this is a Python app.
 In the second part (js-build) we're building JS dependencies for the frontend part.
-The idea is that after the build is done, we can just copy the results, in case of Python the app dir + `.venv` directory while for the frontend, the `node_modules` directory.
+The idea is that after the build is done, we can just copy the results, in case of Python the app dir + `.venv` directory while for the frontend, the generated css and js assets.
 
 This actually save quite a lot. If we're not using multi-stage builds, the final image could be more than 1GB in size.
 With multi-stage builds the final image is about 300+ MB.

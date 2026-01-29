@@ -359,7 +359,7 @@ class JekyllSSG:
             "page": page_data,
             "site": self.config,
             "title": page_data.get("title", ""),
-            "date": str(page_data.get("date", "")),
+            "date": page_data.get("date", ""),  # Keep as datetime object
         }
 
         # Process loops and variables in the content first
@@ -419,9 +419,65 @@ class JekyllSSG:
         )
         template = template.replace("{{ content }}", context.get("content", ""))
         template = template.replace("{{ page.title }}", context.get("title", ""))
-        template = template.replace("{{ page.date }}", context.get("date", ""))
+
+        # Process filters first (like date formatting) before simple replacements
+        template = self.process_filters(template, context)
+
+        # Replace page.date without filter (fallback)
+        page_date = context.get("date", "")
+        if isinstance(page_date, datetime):
+            page_date = page_date.strftime("%Y-%m-%d")
+        template = template.replace("{{ page.date }}", str(page_date))
 
         return template
+
+    def process_filters(self, template: str, context: Dict[str, Any]) -> str:
+        """Process Liquid filters like {{ variable | filter: args }}"""
+        import re
+        from datetime import datetime
+
+        def format_date(match):
+            var_name = match.group(1).strip()
+            date_format = match.group(2).strip().strip("\"'")
+
+            # Get the date value
+            date_val = None
+            if var_name == "page.date":
+                date_val = context.get("date")
+
+            if not date_val:
+                return ""
+
+            # Convert to datetime if it's a string
+            if isinstance(date_val, str):
+                try:
+                    date_val = datetime.strptime(date_val, "%Y-%m-%d %H:%M:%S")
+                except ValueError:
+                    try:
+                        date_val = datetime.fromisoformat(date_val.replace(" ", "T"))
+                    except:
+                        return str(date_val)
+
+            if not isinstance(date_val, datetime):
+                return str(date_val)
+
+            # Format the date
+            # Convert Jekyll/Liquid format to Python strftime format
+            python_format = date_format
+            python_format = python_format.replace(
+                "%e", "%d"
+            )  # Day of month (no leading zero)
+
+            formatted = date_val.strftime(python_format)
+            # Remove leading zero from day if %e was used
+            if "%e" in date_format:
+                formatted = formatted.replace(" 0", " ")
+
+            return formatted
+
+        # Pattern for {{ variable | date: "format" }}
+        pattern = r'{{\s*([^|]+)\s*\|\s*date:\s*["\']([^"\']+)["\']\s*}}'
+        return re.sub(pattern, format_date, template)
 
     def process_loops(self, template: str, context: Dict[str, Any]) -> str:
         """Process {% for %} loops"""

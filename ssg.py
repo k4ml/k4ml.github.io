@@ -114,11 +114,14 @@ class JekyllSSG:
         import re
 
         def replace_include(match):
-            include_file = match.group(1)
+            include_file = match.group(1).strip()
             include_path = self.source_dir / "_includes" / include_file
             if include_path.exists():
                 with open(include_path, "r", encoding="utf-8") as f:
-                    return f.read()
+                    included_content = f.read()
+                # Recursively process includes within includes
+                included_content = self.process_includes(included_content)
+                return included_content
             return ""
 
         return re.sub(r"{%\s*include\s+([^%]+)\s*%}", replace_include, template)
@@ -134,16 +137,67 @@ class JekyllSSG:
             # Simple condition evaluation
             if condition == "page.title":
                 if context.get("title"):
+                    # Process variables in the content before returning
+                    content = self.replace_variables_in_text(content, context)
+                    return content
+            elif condition == "page.excerpt":
+                page_data = context.get("page", {})
+                if page_data.get("content"):
+                    # Process variables in the content
+                    content = self.replace_variables_in_text(content, context)
                     return content
             elif condition == "site.google_analytics":
                 if self.config.get("google_analytics"):
+                    content = self.replace_variables_in_text(content, context)
                     return content
 
             return ""
 
         # Pattern for {% if condition %}...{% endif %}
-        pattern = r"{%\s*if\s+([^%]+)\s*%}(.*?){%\s*endif\s*%}"
-        return re.sub(pattern, replace_conditional, template, flags=re.DOTALL)
+        # Handle {% else %} as well
+        pattern = r"{%\s*if\s+([^%]+)\s*%}(.*?)(?:{%\s*else\s*%}(.*?))?{%\s*endif\s*%}"
+
+        def replace_with_else(match):
+            condition = match.group(1).strip()
+            if_content = match.group(2)
+            else_content = match.group(3) if match.group(3) else ""
+
+            # Evaluate condition
+            result = False
+            if condition == "page.title":
+                result = bool(context.get("title"))
+            elif condition == "page.excerpt":
+                page_data = context.get("page", {})
+                result = bool(page_data.get("content"))
+            elif condition == "site.google_analytics":
+                result = bool(self.config.get("google_analytics"))
+
+            # Return appropriate content
+            content = if_content if result else else_content
+            return self.replace_variables_in_text(content, context)
+
+        return re.sub(pattern, replace_with_else, template, flags=re.DOTALL)
+
+    def replace_variables_in_text(self, text: str, context: Dict[str, Any]) -> str:
+        """Replace variables in text"""
+        page_data = context.get("page", {})
+
+        # Handle {{ page.excerpt | strip_html }}
+        excerpt = page_data.get("content", "")[:200]
+        # Simple strip_html - remove HTML tags
+        import re
+
+        excerpt = re.sub(r"<[^>]+>", "", excerpt)
+        text = re.sub(r"{{\s*page\.excerpt\s*\|\s*strip_html\s*}}", excerpt, text)
+
+        # Replace simple variables
+        text = text.replace("{{ page.title }}", context.get("title", ""))
+        text = text.replace("{{ site.name }}", self.config.get("name", ""))
+        text = text.replace(
+            "{{ site.description }}", self.config.get("description", "")
+        )
+
+        return text
 
     def process_markdown(self, file_path: Path) -> Dict[str, Any]:
         """Process markdown file with frontmatter"""

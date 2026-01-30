@@ -243,15 +243,18 @@ class JekyllSSG:
 
             # Extract date from filename if not in frontmatter
             if "date" not in frontmatter:
-                date_match = re.match(r"(\d{4}-\d{2}-\d{2})-", file_path.name)
+                # Match YYYY-M-D or YYYY-MM-DD format
+                date_match = re.match(r"(\d{4})-(\d{1,2})-(\d{1,2})-", file_path.name)
                 if date_match:
-                    frontmatter["date"] = datetime.strptime(
-                        date_match.group(1), "%Y-%m-%d"
-                    )
+                    year, month, day = date_match.groups()
+                    # Pad month and day to 2 digits for parsing
+                    date_str = f"{year}-{month.zfill(2)}-{day.zfill(2)}"
+                    frontmatter["date"] = datetime.strptime(date_str, "%Y-%m-%d")
 
             # Set title from filename if not in frontmatter
             if "title" not in frontmatter:
-                title = re.sub(r"^\d{4}-\d{2}-\d{2}-", "", file_path.stem)
+                # Remove date prefix (handles both YYYY-MM-DD and YYYY-M-D)
+                title = re.sub(r"^\d{4}-\d{1,2}-\d{1,2}-", "", file_path.stem)
                 frontmatter["title"] = title.replace("-", " ").title()
 
             post = {
@@ -387,8 +390,8 @@ class JekyllSSG:
             f"{date_obj.day:02d}",
         )
 
-        # Extract title from filename
-        title = re.sub(r"^\d{4}-\d{2}-\d{2}-", "", file_path.stem)
+        # Extract title from filename (handle both YYYY-MM-DD and YYYY-M-D)
+        title = re.sub(r"^\d{4}-\d{1,2}-\d{1,2}-", "", file_path.stem)
 
         # Replace placeholders
         url = permalink_style
@@ -419,6 +422,8 @@ class JekyllSSG:
         # Process loops and variables in the content first
         content = self.process_loops(content, context)
         content = self.process_conditionals(content, context)
+        # Also replace site variables in content (like site.baseurl in images)
+        content = content.replace("{{ site.baseurl }}", self.config.get("baseurl", ""))
 
         # Process layout chain
         while current_layout:
@@ -510,10 +515,10 @@ class JekyllSSG:
                     try:
                         date_val = datetime.fromisoformat(date_val.replace(" ", "T"))
                     except:
-                        return str(date_val)
+                        return ""
 
             if not isinstance(date_val, datetime):
-                return str(date_val)
+                return ""
 
             # Format the date
             # Convert Jekyll/Liquid format to Python strftime format
@@ -530,7 +535,8 @@ class JekyllSSG:
             return formatted
 
         # Pattern for {{ variable | date: "format" }}
-        pattern = r'{{\s*([^|]+)\s*\|\s*date:\s*["\']([^"\']+)["\']\s*}}'
+        # Use [^}|] to ensure we don't match across }} boundaries
+        pattern = r'{{\s*([^}|]+)\s*\|\s*date:\s*["\']([^"\']+)["\']\s*}}'
         return re.sub(pattern, format_date, template)
 
     def process_loops(self, template: str, context: Dict[str, Any]) -> str:

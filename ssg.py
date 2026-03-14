@@ -633,8 +633,29 @@ class JekyllSSG:
             print(f"Generated: {output_path}")
 
     def process_scss_imports(self, scss_content: str) -> str:
-        """Process @import statements in SCSS"""
+        """Process @import statements in SCSS and replace variables"""
         import re
+
+        # First, collect all variables and mixins from imported files
+        variables = {}
+        mixins = {}
+
+        def collect_variables(content: str):
+            """Collect SCSS variables from content"""
+            var_pattern = r"\$([a-zA-Z0-9_-]+)\s*:\s*([^;]+);"
+            for match in re.finditer(var_pattern, content):
+                var_name = match.group(1)
+                var_value = match.group(2).strip()
+                variables[var_name] = var_value
+
+        def collect_mixins(content: str):
+            """Collect SCSS mixins from content"""
+            # Pattern: @mixin name { @media ... { @content; } }
+            mixin_pattern = r"@mixin\s+([a-zA-Z0-9_-]+)\s*{([^}]*@media[^}]+{[^}]*@content;[^}]*}[^}]*)}"
+            for match in re.finditer(mixin_pattern, content, re.DOTALL):
+                mixin_name = match.group(1)
+                mixin_body = match.group(2).strip()
+                mixins[mixin_name] = mixin_body
 
         def replace_import(match):
             import_file = match.group(1).strip("\"'")
@@ -642,11 +663,143 @@ class JekyllSSG:
             sass_path = self.source_dir / "_sass" / f"_{import_file}.scss"
             if sass_path.exists():
                 with open(sass_path, "r", encoding="utf-8") as f:
-                    return f.read()
+                    imported_content = f.read()
+                # Collect variables and mixins from this import
+                collect_variables(imported_content)
+                collect_mixins(imported_content)
+                return imported_content
             return f"/* Import not found: {import_file} */"
 
-        # Replace @import statements
-        return re.sub(r'@import\s+["\']([^"\']+)["\'];?', replace_import, scss_content)
+        # Replace @import statements and collect variables/mixins
+        scss_content = re.sub(
+            r'@import\s+["\']([^"\']+)["\'];?', replace_import, scss_content
+        )
+
+        # Collect variables from main content too
+        collect_variables(scss_content)
+        collect_mixins(scss_content)
+
+        # Now replace all variable references with their values
+        # Handle nested variables (variables that reference other variables)
+        max_iterations = 10
+        for _ in range(max_iterations):
+            changed = False
+            for var_name, var_value in list(variables.items()):
+                # Check if this variable value contains other variables
+                var_refs = re.findall(r"\$([a-zA-Z0-9_-]+)", var_value)
+                if var_refs:
+                    # Replace variable references in the value
+                    for ref in var_refs:
+                        if ref in variables and ref != var_name:
+                            old_value = var_value
+                            var_value = var_value.replace(f"${ref}", variables[ref])
+                            if var_value != old_value:
+                                changed = True
+                    variables[var_name] = var_value
+            if not changed:
+                break
+
+        # Replace all variable usages in the content
+        def replace_variable(match):
+            var_name = match.group(1)
+            return variables.get(var_name, match.group(0))
+
+        scss_content = re.sub(r"\$([a-zA-Z0-9_-]+)", replace_variable, scss_content)
+
+        # Process nesting - convert & references to parent selector
+        def expand_nested_rules(content):
+            """Expand nested SCSS rules to flat CSS"""
+            lines = content.split("\n")
+            result = []
+            selector_stack = []
+            brace_count = 0
+            current_selector = ""
+            current_block = []
+
+            for line in lines:
+                stripped = line.strip()
+
+                # Count braces to track nesting level
+                open_braces = line.count("{")
+                close_braces = line.count("}")
+
+                # Check if this is a selector line (ends with { and doesn't start with @media)
+                if (
+                    "{" in line
+                    and not stripped.startswith("@media")
+                    and not stripped.startswith("@include")
+                ):
+                    selector = line.split("{")[0].strip()
+
+                    if brace_count > 0:
+                        # We're nested - need to expand &
+                        if "&" in selector:
+                            # Replace & with parent selector
+                            parent = selector_stack[-1] if selector_stack else ""
+                            selector = selector.replace("&", parent)
+                        else:
+                            # Descendant selector
+                            parent = selector_stack[-1] if selector_stack else ""
+                            if parent:
+                                selector = f"{parent} {selector}"
+
+                    selector_stack.append(selector)
+                    current_selector = selector
+                    brace_count += open_braces
+                    result.append(f"{selector} {{")
+
+                elif "}" in line:
+                    brace_count -= close_braces
+                    if selector_stack:
+                        selector_stack.pop()
+                    result.append(line)
+
+                else:
+                    # Regular line
+                    brace_count += open_braces - close_braces
+                    result.append(line)
+
+            return "\n".join(result)
+
+        scss_content = expand_nested_rules(scss_content)
+
+        # Process @include statements for mixins
+        def replace_include(match):
+            mixin_name = match.group(1).strip()
+            include_content = match.group(2) if match.lastindex >= 2 else ""
+
+            if mixin_name in mixins:
+                mixin_body = mixins[mixin_name]
+                # Replace @content with the actual content
+                result = mixin_body.replace("@content;", include_content.strip())
+                return result
+            return f"/* Mixin not found: {mixin_name} */"
+
+        # Pattern: @include mixin-name { content }
+        scss_content = re.sub(
+            r"@include\s+([a-zA-Z0-9_-]+)\s*{([^}]*)}",
+            replace_include,
+            scss_content,
+            flags=re.DOTALL,
+        )
+
+        # Remove mixin declarations
+        scss_content = re.sub(
+            r"@mixin\s+[a-zA-Z0-9_-]+\s*{[^}]*@media[^}]+{[^}]*@content;[^}]*}[^}]*}",
+            "",
+            scss_content,
+            flags=re.DOTALL,
+        )
+
+        # Remove variable declarations (lines starting with $variable: value;)
+        scss_content = re.sub(
+            r"^\s*\$[a-zA-Z0-9_-]+\s*:[^;]+;\s*$", "", scss_content, flags=re.MULTILINE
+        )
+
+        # Remove SCSS comments (// ...)
+        scss_content = re.sub(r"//.*$", "", scss_content, flags=re.MULTILINE)
+
+        return scss_content
 
     def generate_site(self):
         """Generate the complete static site"""

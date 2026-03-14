@@ -1,12 +1,39 @@
+/* Custom styles for modern design */
+
+/* Panel component with dark mode support */
 .panel {
-  padding: 10px 15px;
-  color: #31708f;
-  background-color: #d9edf7;
-  border-color: #bce8f1;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
-  margin-top: 5px;
+  padding: 1rem 1.25rem;
+  background: rgba(59, 130, 246, 0.1);
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  border-radius: 8px;
+  margin: 1.5rem 0;
   text-align: center;
+  transition: all 0.3s ease;
+}
+
+.panel:hover {
+  border-color: rgba(59, 130, 246, 0.6);
+  background: rgba(59, 130, 246, 0.15);
+}
+
+body.light-mode .panel {
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.25);
+}
+
+body.light-mode .panel:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+  background: rgba(59, 130, 246, 0.12);
+}
+
+/* Enhanced focus styles */
+button:focus,
+a:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button, .theme-toggle {
+  transition: all 0.2s ease;
 }

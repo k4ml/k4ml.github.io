@@ -10,7 +10,6 @@
     <![endif]-->
 
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
     <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/custom.css" />
     <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
 
@@ -29,6 +28,9 @@
           </div>
 
           <nav>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+              <span class="icon">🌙</span>
+            </button>
             <a href="/blog/">Blog</a>
             <a href="/qna/">QnA</a>
             <a href="/hire-me/">Hire me</a>
@@ -48,6 +50,37 @@
         </footer>
       </div>
     </div>
+
+    <script>
+      // Theme toggle functionality
+      const themeToggle = document.getElementById('theme-toggle');
+      const body = document.body;
+      const icon = themeToggle.querySelector('.icon');
+      
+      // Check for saved theme preference or default to dark mode
+      const currentTheme = localStorage.getItem('theme') || 'dark';
+      
+      // Apply saved theme
+      if (currentTheme === 'light') {
+        body.classList.add('light-mode');
+        icon.textContent = '☀️';
+      } else {
+        icon.textContent = '🌙';
+      }
+      
+      // Toggle theme on button click
+      themeToggle.addEventListener('click', () => {
+        body.classList.toggle('light-mode');
+        
+        if (body.classList.contains('light-mode')) {
+          icon.textContent = '☀️';
+          localStorage.setItem('theme', 'light');
+        } else {
+          icon.textContent = '🌙';
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+    </script>
 
     {% include analytics.html %}
   </body>

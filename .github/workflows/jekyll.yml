@@ -23,17 +23,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          ruby-version: '3.2'
-          bundler-cache: true
+          python-version: '3.12'
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
 
       - name: Install dependencies
-        run: bundle install
+        run: uv sync
 
-      - name: Build Jekyll site
-        run: bundle exec jekyll build
+      - name: Build site with ssg.py
+        run: uv run python ssg.py
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
